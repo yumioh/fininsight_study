@@ -1,0 +1,44 @@
+<!--html 구조-->
+<!--
+       * 요청라인 (General) 
+        - Request URL : 요청 URL
+        - Request Method : 요청방식 (post, get, put, delete)
+        - Status Code : 응답코드
+
+       * 헤더
+        - accept : application/json
+        - user-agent : Mozilla/5.0
+        - content-type : application ~~~
+
+       * 바디
+        - 전송하고 싶은 데이터
+    -->
+
+<!--FORM -INPUT -->
+
+<!-- 
+        텍스트, 전송버튼, 라디오 버튼, 체크박스 등 input type="타입" name="값이름"
+        textarea : 긴 내용을 작성시 사용
+
+-->
+<form>
+    <Field> <!--form 태그들을 묶는다-->
+        <Legend>폼1</Legend> <!--field 제목-->
+        <Label>아이디 : <input type="text" /> </Label> <!--태그들 각각 제목-->
+        <Label>패스워드 : <input type="password" /></Label>
+    </Field>
+    <Field>
+        <Legend>폼2</Legend> 
+        <Label>남자 <input type="radio" name="radio" value="1" /></Label> 
+        <Label>여자 <input type="radio" name="radio" value="2" /></Label> 
+        <Label>약관동의 <input type="checkbox" name="checkbox" /></Label>
+    </Field>
+    <br/>
+    <br/>
+    <Field>
+    <!--내부에 태그를 넣어도 태그가 인식되지 않는 코드 그대로 노출-->
+    <textarea cols="40" rows="8">
+        내용을 입력해주세요~
+    </textarea>
+    </Field>
+</form>

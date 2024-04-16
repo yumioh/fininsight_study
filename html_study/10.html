@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 블로그</title>
+</head>
+<body>
+    <!--
+        시멘틱태그 : 태그에 의므를 부여하여 웹사이트의 구조를 파악하기 쉽도록 도와주기 위해 
+
+        figure : 삽화나 그래프 같은 부가적인 요소
+        header : 웹사이트에 상단을 의미하거나 문서의 전체적인 내용
+        fotter : 웹사이트에 하단을 의미하거나 문서의 전체적인 내용 
+        nav : 메뉴 의미
+        aside : 사이드에 위차하는 공간, 광고와 같이 실제 내용과 관계가 적은 내용
+        main : 가장 중심이 되는 콘텐츠
+        mark : 참조나 강조가 필요한 문자
+        section : 문서들의 구획들을 정의 
+        time : 시간
+    -->
+    <header> <!-- 웹 페이지 섹션의 헤더-->
+        <h1>나의 블로그</h1>
+        <nav> <!--네비게이션 링크를 그룹화 주로 header / footer내에 존재-->
+            <ul>
+                <li><a href="#home">홈</a></li>
+                <li><a href="#about">소개</a></li>
+                <li><a href="#contact">연락처</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--메인-->
+    <main>
+        <article> <!--독립적인 구성된 콘텐츠 블로그 포스터, 뉴스기사 ...-->
+            <h2>블로그 포스트 제목</h2>
+            <p>블로그 내용.....</p>
+        </article>
+    </main>
+
+    <!--사이드바-->
+    <aside> <!--부가적인 정보를 제공하는 섹션-->
+        <h3>관련 링크</h3>
+        <ul>
+            <li><a href="#">링크1</a></li>
+            <li><a href="#">링크2</a></li>
+    </ul>
+    </aside>
+
+        <!--페이지 내에서 관련된 콘텐츠를 그룹화 header, footer, article같이 사용-->
+        <!-- 
+            <section id="about"> 
+                <h2>소개</h2>
+                <p>이 섹션은 소개에 대한 내용</p>
+            </section> 
+        -->
+
+    <!--FOOTER-->
+    <footer> <!--페이지나 세션의 바닥글-->
+        <p>Copyright 2024. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

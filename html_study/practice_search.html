@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색어창 만들기</title>
+</head>
+<body>
+    <form>
+        <div>
+            <select name="search_type">
+                <option value="">선택</option>
+                <option value="news">news(뉴스)</option>
+                <option value="article">article(카페)</option>
+            </select>
+            시작일 : <input type="month" name="ds"/>
+            종료일 : <input type="month" name="de"/>
+        </div>
+        <p/>
+        <div>
+            <input type="text" placeholder="검색어 입력" style="width: 460px; height: 20px;"/>
+            <button type="submit" style="height: 25px">검색</button>
+        </div>
+    </form>
+</body>
+</html>
