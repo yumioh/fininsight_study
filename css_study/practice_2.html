@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>실습2</title> 
+        <style> 
+            body {margin: 0; padding: 0; font-family: Arial, sans-serif; color: #333; box-sizing: border-box;} /*body요소의 마진과 패딩 제거*/
+            div#container{ width: 100%; margin: 0 auto; max-width: 1200px; min-width: none; } /*전체 크기 설정*/
+            h1{text-align: center; margin-top: 100px;} /*제목*/
+            div#content{margin: 10px; padding: 0 200px 50px 200px; font-size: 13px; text-align: center; line-height: 130%;}
+            img{position: absolute; width: 100px; height: 100px; border-radius: 50%; margin: 0 auto; z-index: 1; 
+                top: 0; left: 0; right: 0;bottom: 0;} /*가운데 정렬을 하기 위해 사용*/
+            div#overlay{position: absolute; width: 100px; height: 100px; border-radius: 50%; background-color: rgba(144, 0, 255, 0.3); z-index: 2;
+                top: 0; left: 0; right: 0;bottom: 0; margin: 0 auto;}
+            p{margin:100px 0 0 0px; font-size: 13px; font-weight: bold; text-align: center; padding-top: 10px;  z-index: 1;}
+            div#desc{font-size: 11px; text-align: center; line-height: 180%; padding: 10px 30px 0 15px;  z-index: 1;}
+            div#box{position:relative; float: left; width:280px; }
+        </style> 
+    </head> 
+    <body>
+        <div id="container">
+            <h1>Four Col Process With Image</h1>
+            <div id="content">
+                Creativity is a valuable skill in any career, but how can you demonstrate it to potential employers, clients, or collaborators? 
+                One way is to create an online presence that showcases your unique talents, projects, and personality. 
+                In this article, you will learn how to use different platforms and tools to build a digital portfolio that reflects your creative vision and goals.
+            </div>
+            <div id="box">
+                <img src="./img/ex1.jpg" alt="business image">
+                <p>MAKETING</p>
+                <div id="desc">
+                    Marketing refers to any actions a company takes to attract an audience to the company's product or services through high-quality messaging
+                </div>
+            </div>
+            <div id="box">
+                <div id="overlay"></div>
+                <img src="./img/ex1.jpg" alt="business image">
+                <p>MOVIES</p>
+                <div id="desc">
+                    Marketing refers to any actions a company takes to attract an audience to the company's product or services through high-quality messaging. 
+                </div>
+            </div>
+            <div id="box">
+                <div id="overlay"></div>
+                <img src="./img/ex1.jpg" alt="business image">
+                <p>WEBSITE</p>
+                <div id="desc">
+                    Marketing refers to any actions a company takes to attract an audience to the company's product or services through high-quality messaging. 
+                </div>
+            </div>
+            <div id="box">
+                <div id="overlay"></div>
+                <img src="./img/ex1.jpg" alt="business image">
+                <p>STRATEGY</p>
+                <div id="desc">
+                    Marketing refers to any actions a company takes to attract an audience to the company's product or services through high-quality messaging. 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

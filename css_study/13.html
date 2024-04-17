@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+    zindex : 태그들이 겹쳐 있을 경우 우선순위 지정 3-2-1(젤 상단)
+    z-index가 없는 경우 뒤에 오는 태그가 위로 올라감
+
+
+    overflow : 내용이 요소보다 커질 경우 사용
+
+    float : 기본 레이아웃 흐름에 벗어나 모서리가 페이지의 왼쪽이나 오른쪽 이동
+    none, right(오른쪽이동), left(왼쪽이동)
+
+    clear 속성 : float 속성이 적용된 요소 다음에 위치하는 요소들이 float속성이 적용된 요소와 겹치는 현상방지
+    (none, left, right, both)
+    부모태그에 overflow:hidden;을 활용 할 수 있음
+-->
+<html> 
+    <head> 
+        <title>postion</title> 
+        <style> 
+            #box1{ position:absolute; top:0px; left:0px; width:100px; height:100px; background-color:red; z-index: 3;}
+            #box2{ position:absolute; top:20px; left:20px; width:100px; height:100px; background-color:blue; z-index: 2;}
+            #box3{ position:absolute; top:40px; left:40px; width:100px; height:100px; background-color:yellow; z-index:1}
+            #box4{ position:relative; top:180px; left:0px; width:100px; height:100px; border:1px solid blue; overflow:scroll;}
+            
+            #box5{position:relative; width:380px; height:200px; margin-right: 20px; background-color:yellow; float: left;}
+            #box6{position:relative; width:380px; height:200px;  background-color:green; float: left}
+        </style> 
+    </head> 
+    <body> 
+        <div id="box1"></div>
+        <div id="box2"></div>
+        <div id="box3"></div>
+        <div id="box4"></div>
+
+        <div id="box5"></div>
+        <div id="box6"></div>
+    </body>
+</html>

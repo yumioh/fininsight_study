@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+    static-태그가 위에서 아래로 순서대로
+    relative-상하좌우로 위치지정 가능
+    absolute-static이 아닌 부모 기준에 따라 위치 지정 다른 태그에 영향을 받지 않는다. 부모가 static가 아닐 경우 body기준
+    fixed-화면 기준으로 스크롤해도 항상 그위치
+    위치는:top, left,right,bottom으로 지정
+
+    .child 클래스는 다른 요소들과 다르게 position: absolute; 속성을 가지고 있음
+    가장 가까운 부모인 position: relative;를 가진 박스들(#box1, #box2, #box3)을 기준으로 위치가 조정될 것
+    각각의 부모 박스의 좌상단에서 20px씩 떨어진 곳에 위치
+
+    static : 기준없음
+    relative : 요소 자기 자신을 기준으로 배치
+    absolute : 부모 요소를 기준으로 배치 
+    fixed : 뷰포트 기준으로 배치 
+    stickey : 스크롤 영역 기준
+-->
+<html> 
+    <head> 
+        <title>postion</title> 
+        <style> 
+            #box1{ position:relative; top:0px; left:0px; width:100px; height:100px; background-color:red; }
+            #box2{ position:relative; top:20px; left:20px; width:100px; height:100px; background-color:blue; }
+            #box3{ position:relative; top:40px; left:40px; width:100px; height:100px; background-color:yellow; }
+            .child{ position:absolute; background-color:white; top:20px; left:20px; }
+        </style> 
+    </head> 
+    <body> 
+        <div id="box1"></div>
+        <div id="box2"></div>
+        <div id="box3"></div>
+        <div id="box4"></div>
+    </body>
+</html>

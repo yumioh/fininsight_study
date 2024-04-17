@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+    너비 : width
+    높이 : height
+    외부여백 : margin
+    내부여백 : padding
+
+    margin : 위 오른쪽 아래 왼쪽
+    각각 지정
+    margin-top
+    margin-right
+    margin-bottom
+    margin-left
+
+    width나 height를 퍼센트로 지정할 경우 
+    padding을 지정하면 해당 퍼센트에서 padding만큼 커짐
+
+    해결방법 calc 함수 사용 
+    padding : 10px 
+    width: calc(100% - 20px) : 아래 위가 각각 10px이므로
+-->
+<html> 
+    <head> 
+        <title>타이틀</title> 
+        <style> 
+            #box{ background:yellow; width:300px; height:300px; } 
+            #figure{background-color:violet; border: 3px solid; width: 300px; height: 300px;
+                    margin: 15px 0px 15px 0px;}
+        </style> 
+    </head> 
+    <body> 
+        <div id="box"> Hi Melody </div> 
+        <div id="figure"></div>
+    </body>
+</html>

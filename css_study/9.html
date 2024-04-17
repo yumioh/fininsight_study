@@ -17,17 +17,75 @@
     text-decoration (underline, overline, line-through, none)
 
 -->
+<!--문자속성 - 정렬-->
+<!--
+    text-align - 수평정렬(left, right, center, jusitfy)
+    vertical-align - 수직정렬
+    line-height - 수직높이(top, middle, bottom)
+    text-indent - 들여쓰기,내여쓰기
+    letter-spacing - 자간
+    word-spacing - 문자간격
+-->
+<!--문자속성 - white space-->
+<!--
+    : 백 문자(Whitespace) 처리와 줄바꿈 규칙을 지정
+
+    normal: 줄바꿈을 인식하고, 공백을 인식하지 못합니다. 기본값
+    nowrap : 줄바꿈, 공백을 인식하지 못합니다. 한 줄로 정렬
+    pre : 줄바꿈은 인식 못하고, 공백만 인식합니다.
+    pre-wrap : 줄바꿈, 공백을 인식합니다.
+    pre-line : 줄바꿈 인식하고, 공백은 앞쪽만 인식
+    break-spaces : 줄바꿈, 공백을 글자를 기준으로 인식
+    
+-->
+<head>
+    <style type="text/css">
+        @font-face {
+            font-family: 'SDSamliphopangche_Outline';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'SDSamliphopangche_Outline';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            white-space: pre;
+        }
+        #a{
+            font-family: 'SDSamliphopangche_Outline';
+        }
+        #b{
+            font-family: cursive;
+        }
+        div#txt{
+            display: table-cell; /*해당요소를 테이블 열로 만듬*/
+            width: 500px;
+            height: 500px;
+            text-align: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
 <body>
-    <div style="font-size: xx-large;">
+    <div id="a" style="font-size: xx-large;">
         안녕하세요 div 박스입니다
     </div>
-    <div style="color: aqua;">
+    <div id="a"  style="color: aqua;">
         안녕하세요 div 박스입니다
     </div>
-    <div style="font-weight: 700;">
+    <div id="a"  style="font-weight: 700;">
         안녕한세요 div 박스입니다
     </div>
-    <div style="text-decoration: line-through;">
+    <div id="b" style="text-decoration: line-through;">
         안녕한세요 div 박스입니다
+    </div>
+    <div id="txt">
+        지금이 아닌 언젠가 여기가 아닌 어딘가
+        나를 받아 줄 그곳이 있을까 
+        가난한 나의 영혼을 숨기려 하지 않아도 
+        나를 안아줄 사람이 있을까 
+        목마른 가슴 위로 태양은 타오르네
     </div>
 </body>
