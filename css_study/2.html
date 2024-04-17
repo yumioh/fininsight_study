@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- 특정태그에 스타일 주기-->
+<!--
+    id 옵션 선택 기호 : #
+    class 옵션 선택 기호 : .
+
+-->
+<!--자식, 자손 선택자
+    자식 : 바로 한다계 아래 포함하고 있는 태그 >
+    자손 : 자신이 포함하고 있는 모든 태그, 기호 : 스페이스
+-->
+<head>
+    <style type="text/css">
+    /*a{ color: orange;}*/
+    /* #menu{
+        background-color: yellow;
+    }
+    .title{
+        background-color: blue;
+    } */
+
+    div#menu > a{
+        background-color: red;
+    }
+    div#menu a{
+        border: 2px solid greenyellow;
+    }
+
+
+    </style>
+</head>
+<html>
+    <div id="menu">
+        <a>
+            <img alt="로고" src="./img/youtube.png">
+        </a>
+        <ul>
+            <li>
+                <a href="#home">홈</a>
+            </li>
+            <li class="blue">
+             <a href=”#me”>내소개</a> 
+            </li>
+            <li>
+                <a href=”#portfolio”>포트폴리오</a> 
+            </li>
+        </ul>
+    </div>
+    <div>
+        <div class="title">톰보이</div>
+        <div class="content">
+            난 <strong>엄마</strong> 가 늘 베푼 사랑에 <b>어색</b>해
+        </div>
+    </div>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--옵션선택자-->
+<!--
+    선택자[속성] : 해당 속성이 있는 태그를 선택
+    선택자[속성=값] : 속성 안의 값이 같은 경우 선택
+
+    선택자[속성~=값] : 특정단어포함
+    선택자[속성^=값] : 특정단어로 시작
+    선택자[속성$=값] : 특정단어로 끝나는
+    선택자[속성*=값] : 특정값을 포함
+-->
+<head>
+    <style type="text/css">
+       /* a[href] {
+            background-color: green;
+        }*/
+        a[href]{
+            font-size: 30px;
+        }
+        a[href="#home"] {/*href="#home"가 있는 요소*/
+            background-color: violet;
+        }
+        a[href*="intro"] { /*intro을 포함하는 요소 적용 */
+            background-color: rgb(179, 238, 130);
+        }
+        a[href~="portfolio"] { /*intro을 포함하는 요소 적용 */
+            font-size: 40px;
+        }
+        a[href$=".com"] { /*속성값이 ".com"으로 끝나는 요소 적용 */
+            background-color: pink; font-size: 20px;
+        }
+
+    </style>
+</head>
+<html>
+    <div id="menu">
+        <a>
+            <img alt="로고" src="./img/youtube.png">
+        </a>
+        <ul>
+            <li>
+                <a href="#home">홈</a>
+            </li>
+            <li class="blue">
+             <a href=”#intro”>내소개</a> 
+            </li>
+            <li class="yellow">
+                <a href=”#portfolio”>포트폴리오</a> 
+            </li>
+            <li class="pink">
+                <a href="http://naver.com" target="_blank">네이버</a> 
+            </li>
+        </ul>
+        </ul>
+    </div>
+    <div>
+        <div class="title">톰보이</div>
+        <div class="content">
+            난 <strong>엄마</strong> 가 늘 베푼 사랑에 <b>어색</b>해
+        </div>
+    </div>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--형제선택자-->
+<!--
+    + : +을 기준으로 앞 선택자 직후에 나오는 후방 형제 선택자 선택
+    ~ : ~ 기준으로 앞 요소 이후에 나오는 모든 요소를 선택
+-->
+<head>
+    <style type="text/css">
+        li.blue +li{
+            background-color: yellowgreen; /*포트폴리오 선택*/
+        }
+        li ~ li.blue{ /*포트폴리오 선택*/
+            font-size: 50px; border: 2px solid red;
+        }
+
+    </style>
+</head>
+<html>
+    <div id="menu">
+        <a>
+            <img alt="로고" src="./img/youtube.png">
+        </a>
+        <ul>
+            <li>
+                <a href="#home">홈</a>
+            </li>
+            <li class="blue">
+             <a href=”#me”>내소개</a> 
+            </li>
+            <li class="yellow">
+                <a href=”#portfolio”>포트폴리오</a> 
+            </li>
+        </ul>
+    </div>
+    <div>
+        <div class="title">톰보이</div>
+        <div class="content">
+            난 <strong>엄마</strong> 가 늘 베푼 사랑에 <b>어색</b>해
+        </div>
+    </div>
+</html>
