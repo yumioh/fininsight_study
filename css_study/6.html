@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--상태 선택자-->
+<!--
+    :checked - 체크 상태의 input 태그를 선택
+    :focus - 포커스가 있는 input 태그를 선택
+    :enabled - 사용 가능한 input 태그를 선택
+    :disabled - 사용 불가능한 input 태그를 선택
+
+-->
+<head>
+    <style type="text/css">
+        input:checked + input{font-size:20px; } 
+        input:focus{border:5px solid red; } /* input 박스를 클릭하면 요소 적용*/
+        input:disabled{ color:green; }
+        input#goodbye:checked + input{font-size:45px; } /*goodbye id에만 적용*/
+
+    </style>
+</head>
+<html>
+    <div id="menu">
+        <input type="checkbox"/> 
+        <input value="안녕하세요"/>
+        <input value="안녕하세요" disabled/>
+
+        <input id="goodbye" type="checkbox" /> 
+        <input value="안녕히 가세요"/>
+    </div>
+</html>

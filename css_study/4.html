@@ -23,8 +23,11 @@
         a[href*="intro"] { /*intro을 포함하는 요소 적용 */
             background-color: rgb(179, 238, 130);
         }
-        a[href~="portfolio"] { /*intro을 포함하는 요소 적용 */
-            font-size: 40px;
+        a[href~="portfolio"] { /*"portfolio" 단어가 포함된 요소 적용 */
+            background-color: yellow;
+        }
+        a[href^="#e"] { /*#e로 시작하는 요소 적용 */
+            background-color: grey;
         }
         a[href$=".com"] { /*속성값이 ".com"으로 끝나는 요소 적용 */
             background-color: pink; font-size: 20px;
@@ -42,10 +45,13 @@
                 <a href="#home">홈</a>
             </li>
             <li class="blue">
-             <a href=”#intro”>내소개</a> 
+             <a href="#intro">내소개</a> 
             </li>
             <li class="yellow">
-                <a href=”#portfolio”>포트폴리오</a> 
+                <a href="portfolio">포트폴리오</a> 
+            </li>
+            <li class="grey">
+                <a href="#etc">기타</a> 
             </li>
             <li class="pink">
                 <a href="http://naver.com" target="_blank">네이버</a> 

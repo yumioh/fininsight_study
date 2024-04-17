@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--구조 선택자-->
+<!--
+    :first-child - 형제 관계 중에서 '첫 번째'에 위치하는 태그를 선택
+    :last-child - 형제 관계 중에서 '마지막'에 위치하는 태그를 선택
+    :nth-child(수) - 형제 관계 중에서 '앞'에서 수열 번째에 태그를 선택
+    :nth-last-child(수) - 형제 관계 중에서 '뒤'에서 수열 번째에 태그를 선택
+
+-->
+<head>
+    <style type="text/css">
+        li:first-child{ background-color:yellow; } 
+        li:last-child{ background-color:pink; } 
+    </style> 
+    <style> 
+        li:nth-child(2n){ background-color:red; } /*홀수 2n이면 짝수*/
+    </style>
+</head>
+<html>
+    <div id="menu">
+        <a>
+            <img alt="로고" src="./img/youtube.png">
+        </a>
+        <ul>
+            <li>
+                <a href="#home">홈</a>
+            </li>
+            <li class="blue">
+             <a href=”#me”>내소개</a> 
+            </li>
+            <li class="yellow">
+                <a href=”#portfolio”>포트폴리오</a> 
+            </li>
+        </ul>
+    </div>
+    <div>
+        <div class="title">톰보이</div>
+        <div class="content">
+            난 <strong>엄마</strong> 가 늘 베푼 사랑에 <b>어색</b>해
+        </div>
+    </div>
+</html>
