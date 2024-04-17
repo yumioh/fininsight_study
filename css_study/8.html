@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- 우선순위-->
+<!--
+    중요도 
+    1. 사용자 스타일 시트의 중요(!important) 스타일
+    2. 제작자 스타일 시트의 중요 스타일
+    3. 제작자 스타일 시트의 일반 스타일
+    4. 사용자 스타일 시트의 일반 스타일
+    5. 브러우저 스타일
+
+    - 사용자 스타일 시트: 저시력자나 색약자 등과 같이 특별한 조건이 필요한 사용자가 자신에게 맞게 구성해 높은 스타일 시트. 고대비 설정 등 시스템에 의해 만들어지는 스타일이다.
+    - 제작자 스타일 시트: 개발자가 작성한 css 파일에 의해 스타일이 적용된다.
+    - 브라우저 스타일: 각각의 브러우저가 가지는 기본 스타일이다.
+
+    !important :우선순위가 가장 높고 상속받은 스타일을 무시할 수 있다. 하지만 그렇기 때문에 더욱 더 주의해서 써야하고, 최대한 자제해야한다.
+
+    명시도란? 주어진 CSS 선언에 적용되는 가중치
+    1. !important
+    2. 인라인 스타일
+    3. id 스타일
+    4. class / attribute / 가상 선택자(:hover, :active etc...) 스타일
+    5. 태그 선택자
+    6. 전체 선택자(*)
+-->
+
+<!-- 크기단위 -->
+<!-- 
+    px - 절대적인 고정 크기
+    % - 백분율(기본 크기에서 상대적인 크기) 
+    em - 폰트기준, 폰트의 경우 백분위(1.5=150%)
+-->
+
+<!--색상단위-->
+<!--
+    hex : rgb를 16진수로
+    rgb : 0 ~ 255 숫자로
+    rgba : a는 투명도 alpha
+    기본색상명 : orange, navy, olive, teal...
+
+-->
+<head>
+    <style type="text/css">
+        #menu{background-color: grey;}
+        .menu{color: white;
+        }
+    </style>
+</head>
+<body>
+    <div style="font-size:20px"> 20px의 텍스트
+            <div style="font-size:2em"> 20px*2의 텍스트</div> 
+            <div style="font-size:40px"> 40px의 텍스트</div> 
+        </div> 
+    <div style="width:400px; background-color:yellow; height:40px;"> 
+        <div style="width:50%; background-color:blue; height:40px;"> </div> 
+    </div>
+</body>
