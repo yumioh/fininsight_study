@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+    LIST 속성
+
+    list-style-type : 번호 스타일 지정
+
+-->
+<head>
+    <style type="text/css">
+        .style_dics{list-style-type: disc;}
+        .style_circle{list-style-type: circle;}
+        .style_square{list-style-type: square;}
+        .style_none{list-style-type: none;}
+
+        .style_decimal{list-style-type: decimal;} /*번호*/
+        .style_zero{list-style-type: decimal-leading-zero;} /**0이 붙는 숫자*/
+        .style_lower_roman{list-style-type: lower-roman;} /*소문자 로마자*/
+        .style_upper_roman{list-style-type: upper-roman;} /*대문자 로마자*/
+        .style_lower_alpha{list-style-type: lower-alpha;} /*소문자 알파벳*/
+        .style_upper_alpha{list-style-type: upper-alpha;} /*대문자 알파벳*/
+    </style>
+</head>
+<body>
+    <ul>
+        <li>순서가 없는 목록</li>
+        <li class="style_disc">No sweat, no sweet.</li>
+        <li class="style_circle">Asking costs noting.</li>
+        <li class="style_square">Step by step goes a long way</li>
+        <li class="style_none">You will never know untill you try.</li>
+    </ul>
+
+    <ol>
+        <li>순서가 있는 목록</li>
+        <li class="style_decimal">No sweat, no sweet.</li>
+        <li class="style_zero">Asking costs noting.</li>
+        <li class="style_lower_roman">Step by step goes a long way</li>
+        <li class="style_upper_roman">You will never know untill you try.</li>
+        <li class="style_lower_alpha">Time is gold.</li>
+        <li class="style_upper_alpha">No sweat, no sweet.</li>
+    </ol>
+</body>

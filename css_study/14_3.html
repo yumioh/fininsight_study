@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--가시 속성-->
+<!--
+    display : 성은 요소를 어떻게 보여줄지를 결정
+    - none : 보이지 않음. 요소를 렌더링하지 않도록 설정
+    - block : 블록 박스. 가로 영역을 모두 채우며, block 요소 다음에 등장하는 태그는 줄바꿈이 된 것처럼 보임. (세로배치, 크기지정가능 margin, padding 가로만 가능)
+    - inline : 인라인 박스. 가로배치, 크기 지정 불가능(margin, padding 가로만 가능)
+    - inline-block : block과 inline의 중간 형태 (가로배치, 크기 지정 불가능. margin, padding 가능 text-align: center; 로 가운데정렬 가능)
+    - table, table-row, table-cell - 일반태그를 table 태그처럼
+-->
+<head>
+    <style type="text/css">
+        /*줄바꿈 안됨. width와 height를 지정 불가능 */
+        .inline1{
+            background: #09c;
+        }
+        .inline2{
+            width: 200px; /* 이 값은 무시됩니다 */
+            border: 3px solid #999;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        Lorem ipsum dolor sit amet, <span class="inline1">consectetur adipiscing elit</span>,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in <span class="inline2">reprehenderit</span>
+        in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident,
+        sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+</body>
+
+

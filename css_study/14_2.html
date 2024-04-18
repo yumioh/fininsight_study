@@ -10,15 +10,16 @@
 -->
 <head>
     <style type="text/css">
-        #display-none{ display: none } /*영역을 차지 하지 않음*/
-        #invisible{ visibility: hidden } /*영역 차지함*/
+        /*block 요소 다음에 태그는 줄바꿈 됨 */
+        #block1{width: 300px; border: 2px solid #333;}
+        #block1{width: 200px; border: 2px solid #999;}
     </style>
 </head>
 <body>
-   <div id="display-none">block11111</div>
-   <div>block1</div>
-   <div id="invisible">block22222</div>
-   <div>block2</div>
+   <div id="block1">block11111</div>
+   <div id="block2">block22222</div>
+   hello
+   hello
 </body>
 
 
