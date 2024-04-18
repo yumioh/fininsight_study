@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+    <style type="text/css">
+        body {
+            margin: 0; padding: 0; font-family: Arial, sans-serif; 
+            color:black; box-sizing:border-box;} 
+
+        table{
+            margin:150px;justify-content: center; 
+            display: flex; border-collapse: collapse;
+        }
+
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            border-top: 1px solid grey; 
+            border-bottom: 1px solid grey; 
+            font-size: 15px;
+            padding: 5px;
+            color: grey;
+        }
+
+        tr#total td{font-weight: bold; color: black;}
+        tr#itemname th{font-size: 15px; padding-bottom: 10px;}
+
+        td#name{text-align: left;} 
+        td#price{text-align: right;}
+
+        /*표색상*/
+        tr:nth-child(even){
+            background-color: rgba(169, 169, 169, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <tr id="itemname">
+            <th>이름</th>
+            <th>방문횟수</th>
+            <th>클릭횟수</th>
+            <th>방문시간</th>
+            <th>구입금액</th>
+        </tr>
+        <tr id="total">
+            <td id="name">전체</td>
+            <td>432</td>
+            <td>3125</td>
+            <td>54:12</td>
+            <td id="price">1,235,302원</td>
+        </tr>
+        <tr>
+            <td id="name">홍길동</td>
+            <td>34</td>
+            <td>2353</td>
+            <td>12:43</td>
+            <td id="price">120,340원</td>
+        </tr>
+        <tr>
+            <td id="name">이몽룡</td>
+            <td>43</td>
+            <td>2134</td>
+            <td>11:23</td>
+            <td id="price">120,340원</td>
+        </tr>
+        <tr>
+            <td id="name">지석진</td>
+            <td>12</td>
+            <td>3412</td>
+            <td>08:21</td>
+            <td id="price">120,340원</td>
+        </tr>
+        <tr>
+            <td id="name">유재석</td>
+            <td>56</td>
+            <td>6345</td>
+            <td>23:11</td>
+            <td id="price">120,340원</td>
+        </tr>
+        <tr>
+            <td id="name">박진영</td>
+            <td>23</td>
+            <td>2356</td>
+            <td>19:23</td>
+            <td id="price">120,340원</td>
+        </tr>
+    </table>
+</body>

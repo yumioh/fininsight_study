@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <style type="text/css">
+HTML CSSResult Skip Results Iframe
+EDIT ON
+
+.dropdown{
+  position : relative;
+  display : inline-block;
+}
+.dropdown-content{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: #f9f9f9;
+  min-width : 200px;
+}
+
+.dropdown-content a{
+  display : block;
+  text-decoration : none;
+  background-color: grey;
+  font-size: 12px;
+  padding : 12px 20px;
+}
+.dropbtn_icon{
+  font-family : 'Material Icons';
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+    </style>
+</head>
+<body>
+    <div class="dropdown">
+        <span class="dropbtn_icon">more_horiz</span>
+        <div class="dropdown-content">
+          <a href="#">profile</a>
+          <a href="#">write a post</a>
+          <a href="#">settings</a>
+        </div>
+    </div>
+</body>

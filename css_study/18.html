@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+    테이블에만 적용 되는 태그들 
+    2. border-spacing : 표(table)의 테두리와 셀(td)의 테두리 사이의 간격을 정한다. 기본값 : 2px
+
+    length : 길이를 입력한다. 값이 한개면 모든 간격에 같은 값을 사용하고, 값이 두개면 첫번째 값은 좌우, 두번째 값은 상하의 간격으로 사용힌다.
+    initial : 기본값으로 설정한다.
+    inherit : 부모 요소의 속성값을 상속받는다.
+
+-->
+<head>
+    <style type="text/css">
+    table {
+        width: 100%;
+        border: 1px solid #333333;
+      }
+      td {
+        padding: 10px;
+        border: 1px solid #333333;
+      }
+      .a {
+        border-spacing: 0px;
+      }
+      .b {
+        border-spacing: 5px;
+      }
+      .c {
+        border-spacing: 10px;
+      }
+      .d {
+        border-spacing: 5px 10px;
+      }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+      </table>
+      <h1>Border Spacing : 0px</h1>
+      <table class="a">
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+      </table>
+      <h1>Border Spacing : 5px</h1>
+      <table class="b">
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+      </table>
+      <h1>Border Spacing : 10px</h1>
+      <table class="c">
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+      </table>
+      <h1>Border Spacing : 5px 10px</h1>
+      <table class="d">
+        <tr>
+          <td>Lorem</td>
+          <td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+        <tr>
+          <td>Lorem</td>
+          td>Ipsum</td>
+          <td>Dolor</td>
+        </tr>
+      </table>
+</body>

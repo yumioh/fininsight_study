@@ -1,5 +1,5 @@
 body {margin: 0; padding: 0; font-family: Arial, sans-serif; color: white; box-sizing: border-box; background-color: rgba(31, 47, 225, 0.893);} /*body요소의 마진과 패딩 제거*/
-div#container{ width: 100%; margin: 0 auto; max-width: 1200px; min-width: none; } /*전체 크기 설정*/
+
 
  /*제목*/
 div#title{text-align: center; margin: 150px 0 50px 0;}
