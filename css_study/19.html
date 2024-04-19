@@ -1,0 +1,36 @@
+<!--
+    반응형 웹사이트를 위한 media 쿼리 
+
+    @media를 통한 장치 구분
+    screen - 모니터, default
+    tv - 텔레비전
+    print - 프린트(인쇄시)
+    aural - 음성장치 
+
+    추가옵션
+    width - 너비
+    height - 높이 
+    device-width - 장치너비
+    device-height - 장치높이 
+    orientation - 장치방향
+    device-aspect-ratio - 장치비율
+    resolution - 장치해상도
+
+    반응형 적용예
+    @media screen and(max-width: 797px){
+        /*스마트폰*/
+    }
+
+    @media screen and(max-width: 797px) and (max-width: 959px){
+        /*태블릿*/
+    }
+
+    @media screen and(max-width: 959px){
+        /*일반웹사이트*/
+    }
+
+    css 추가시 미디어장치 선택가능
+    <link rel=’stylesheet’ href=’style.css’ media=’screen’/>
+     <link rel=’stylesheet’ href=’print.css’ media=’print’/>
+
+-->

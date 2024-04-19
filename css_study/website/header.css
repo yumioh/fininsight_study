@@ -1,0 +1,37 @@
+body{
+    margin: 0; 
+    padding: 0; 
+    font-family: Arial, sans-serif; 
+    color: white; 
+    box-sizing: border-box;
+}
+
+#headerwrapper{
+    width: 1300px;
+    height: 100px;
+    background-color: rgba(47, 47, 49, 0.9);
+    display: flex;
+    align-items: center;
+}
+
+#logo{
+    width: 140px;
+    font-size:  20px;
+    font-weight: bold;
+    margin: 0px 840px 0px 80px;
+    
+}
+span{
+    font-size: 12px;
+    color: lightblue;
+}
+
+#menu{
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+}
+
+#menu div:hover{
+    color: lightskyblue;
+}

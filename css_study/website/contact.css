@@ -1,0 +1,26 @@
+#topwrapper{
+    width: 1300px;
+    height: 1000px;
+    display: flex;
+}
+
+#top{
+    background-color: rgb(60, 149, 252);
+    width: 1300px;
+    height: 100px;
+    display: flex;
+}
+
+div#contact{
+    font-size: 15px;
+    display: flex;
+    margin: 45px 0px 0px 80px;
+
+}
+
+div#page{
+    display: flex;
+    font-size: 10px;
+    margin: 45px 0px 0px 950px;
+    gap : 10px
+}
