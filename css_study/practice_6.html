@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<head>
+    <style type="text/css">
+        /*body 셋팅*/
+        body {
+                margin: 0; padding: 0; 
+                font-family: Arial, sans-serif; 
+                color:black; box-sizing:border-box; 
+                width: 1200px;
+            } 
+        
+        /*테이블 상단*/
+        hr{
+            width: 1000px; margin-top: 100px;
+            border: 1px solid rgba(128, 128, 128, 0.161); 
+        }
+        h3 {
+            margin: 10px 0px 0px 100px;
+            display: flex;
+            justify-content: left;
+            text-align: left;
+        }
+        h5 {
+            margin: 0px 0px 20px 100px;
+            display: flex;
+            justify-content: left;
+            text-align: left;
+            color: rgba(128, 128, 128, 0.342);
+        }
+        div#topbtn{
+            margin: 0px 0px 20px 100px;
+            display: flex; /*요소를 플렉스 컨테이너로 만들어 수평 또는 수직으로 정렬*/
+        } 
+        div#topbtn > div{
+            width: 60px;
+            height: 35px;
+            background-color: rgb(111, 4, 211);
+            color: white;
+            text-align: center;
+            box-sizing:border-box; /*border+padding포함하여 계산*/
+            padding-top: 10px;
+            font-size: 12px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        /*테이블*/  
+        table{
+            margin-left: 100px;
+            width: 1000px;
+            height: 500px;
+            border-collapse: collapse;
+            font-size: 13px;
+
+        } 
+        table tr{
+            border: 1px solid grey;
+            width: 200px;
+
+        }
+        td{
+            border: 1px solid grey;
+            padding: 10px;
+            font-weight: bold;
+        }
+        tr td#date{
+            color: rgb(211, 206, 206);
+
+        }
+        tr:nth-child(even){
+            background-color: rgba(169, 169, 169, 0.2);
+        }
+
+        /*하단*/
+        div#footer{
+            display: flex;
+            justify-content: left;
+            margin: 10px 0 0 100px;
+        }
+
+        div#footer div#showing{
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        div#footer div#paging{
+            margin-left: 780px;
+            font-size: 10px;
+            font-weight: bold;
+            white-space: pre; /*공백 그대로 유니*/
+        }
+
+        span{
+            color:rgb(187, 183, 183)
+        }
+
+    
+
+    </style>
+</head>
+<body>
+    <hr></hr>
+    <h3>File Export</h3>
+    <h5>DataTables has most features enabled by default. so all to do user it with your own ables is to cell the contruction fucntion dataTables();</h5>
+
+
+    <div id="topbtn">
+        <div>Copy</div>
+        <div>CSV</div>
+        <div>Excel</div>
+        <div>PDF</div>
+        <div>Print</div>
+    </div>
+
+    <table>
+        <tr>
+            <td>Invoice# ▽</td>
+            <td>Created ▽</td>
+            <td>Status ▽</td>
+            <td>Customer ▽</td>
+            <td>Due ▽</td>
+            <td>Service ▽</td>
+            <td>Total ▽</td>
+        </tr>
+        <tr>
+            <td>INV-204</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>INV-204</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>INV-024</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>INV-025</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>INV-026</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>INV-027</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>INV-028</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>INV-029</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>INV-046</td>
+            <td id="date">20 Mar 2018</td>
+            <td>Draft</td>
+            <td>Bartholomew shoes</td>
+            <td id="date">20 May 2018</td>
+            <td>Garaphic Designer</td>
+            <td>$151,100</td>
+        </tr>
+        <tr>
+            <td>Invoice #</td>
+            <td>Created</td>
+            <td>Status</td>
+            <td>Customer</td>
+            <td>Due</td>
+            <td>Service</td>
+            <td>Totalr</td>
+        </tr>
+    </table>
+
+    <div id="footer">
+        <div id="showing">Showing 1 to 57 Entries</div>
+        <div id="paging">Pre <span> 01 02 .... 03 </span> Next</div>
+    </div>
+</body>
