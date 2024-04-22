@@ -128,6 +128,7 @@ div#box_light{
 }
 
 div#box_blue{
+    position: relative;
     background-color: rgb(0, 172, 238);
     color: white;
     text-align: center;
@@ -146,13 +147,12 @@ div#box_blue p{
     margin-left: 120px;
 
 }
-
-
-#box_blue img{
-    position: absolute;
-    display: flex;
-    left: 630px;
-    top : 1510px;
+/*position: absolute; 넣으면 브라우저가 움직일떄 마다 
+위치가 바뀜 -> 부모 요소에 position: relative;넣어 해결*/
+#box_blue img {
+    position: absolute; /* 이미지에 대해서만 절대 위치 설정 */
+    left: 43%;
+    top: 58%; 
+    transform: translate(-50%, -50%); 
     padding-right: 50px;
 }
-
