@@ -1,0 +1,165 @@
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/*Contact Us*/
+#aboutwrapper{
+    width: 1300px;
+    height: 100px;
+    color: white;
+    display: flex;
+    justify-content: center;/* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+#top{
+    width: 100%;
+    height: 100px;
+    background-color: rgb(0, 172, 238);
+    display: flex;
+    align-items: center;
+}
+div#about{
+    font-size: 15px;
+    margin-left: 80px;
+}
+div#page{
+    font-size: 11px;
+    margin-left: 900px;
+    gap : 10px;
+    display: flex;/*한줄로 나란히 */
+}
+
+/*about content*/
+#content-wrapper {
+    width: 1300px; /* 부모 너비 설정 */
+}
+
+/*윗단락*/
+#topwrapper{
+    margin-top: 80px;
+    gap: 40px;
+    display: flex;
+    justify-content: space-between;/*가로 축을 기준으로 좌우 정렬:동일한 가격으로 정렬*/
+}
+
+/*윗상자*/
+#square{
+    width: 50%;
+    height: 380px;
+    background-color: rgba(60, 60, 60, 0.904);
+}
+
+#square-content{
+    width: 50%;
+    margin-bottom: 120px;
+}
+#square-content h2{
+    padding-bottom: 20px;
+}
+
+#square-content h5{
+    color: grey;
+    font-weight: lighter;
+    font-size: 17px;
+    line-height: 2;
+}
+
+#square-content button{
+    width: 100px;
+    height: 35px;
+    background-color: rgba(60, 60, 60, 0.904);
+    color: white;
+    margin: 50px 0 10px 530px;
+}
+
+#team{
+    margin-bottom: 50px;
+}
+/*육각형이 없어 원으로 대체*/
+h2#team{
+    position: relative; /*내부 요소의 위치를 기준으로 하는 상대 위치를 사용*/
+    text-align: center; /*텍스트 가운데 정리*/
+    color: grey;
+}
+
+#team img {
+    position: absolute; /* 절대 위치 지정 */
+    top: 50%; /* 부모 요소의 상단기준으로 배치*/
+    left: 780px; /* 부모 요소의 왼쪽기준으로 배치*/ 
+    transform: translate(-50%, -50%); /* 이미지의 중심을 부모 요소의 중심으로 이동 */
+    width: 40px; /* 이미지 너비 */
+    height: 40px; /* 이미지 높이 */
+}
+
+h2#team div{
+    position: absolute; 
+    color: white; 
+    font-size: 20px; 
+    top: 50%; /* 부모 요소의 상단에서 배치 */
+    left: 780px; /* 부모 요소의 왼쪽에서  배치 */
+    transform: translate(-50%, -50%); /* 이미지의 중심을 부모 요소의 중심으로 이동 */
+    z-index: 1; /* 텍스트가 이미지 위에 나타나도록 설정 */
+}
+
+/*아랫 단락*/
+
+#box{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+
+#box-content {
+    text-align: center;
+}
+
+#box-content div#bluebox{
+    width: 300px;
+    height: 300px;
+    background-color: rgb(0, 172, 238);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#box-content div#bluebox img{
+    width: 20px;
+    height: 20px;
+    margin: 0 10px;
+}
+
+#box-content div#greybox{
+    width: 300px;
+    height: 300px;
+    background-color:rgba(60, 60, 60, 0.904);
+    margin-bottom: 30px;
+}
+
+#box-content p#name{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#box-content p#title{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(0, 172, 238);
+    margin-bottom: 20px;
+}
+
+#box-content p#desc{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(189, 185, 185);
+    margin-bottom: 20px;
+    line-height: 2;
+}
+
+hr{
+    border: 1.5px solid black;
+}
