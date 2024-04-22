@@ -1,10 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/*Contact Us*/
 #topwrapper{
     width: 1300px;
-    height: 1000px;
+    height: 100px;
+    color: white;
     display: flex;
 }
 
-#top{
+#righttop{
     background-color: rgb(60, 149, 252);
     width: 1300px;
     height: 100px;
@@ -13,14 +20,139 @@
 
 div#contact{
     font-size: 15px;
-    display: flex;
     margin: 45px 0px 0px 80px;
 
 }
 
 div#page{
-    display: flex;
-    font-size: 10px;
+    font-size: 11px;
     margin: 45px 0px 0px 950px;
-    gap : 10px
+    gap : 10px;
+    display: flex;
+}
+
+#wrapper {
+    display: flex; /* 나란히 배치하기 위해 flexbox 사용 */
+    justify-content: space-between; /* 요소들을 공간을 최대한 활용하며 나란히 배치 */
+    width: 1300px; /* 부모 너비 설정 */
+}
+
+/*오른쪽 part*/
+#rightwarapper, #leftwrapper{
+    padding-top: 80px;
+    color: black;
+}
+
+#rightwarapper{
+    width: 70%;
+    margin-right: 20px;
+}
+
+hr{
+    width: 100%;
+    margin: 10px 5px 35px 0px;
+    border: 2px solid black;
+}
+
+h5{
+    line-height: 2;
+    margin-bottom: 80px;
+    font-weight: lighter;
+}
+
+/*입력칸*/
+#items{
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+input{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+input::placeholder{
+    padding-left: 10px;
+    color: rgba(128, 128, 128, 0.5);
+}
+
+textarea{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 50px;
+}
+
+textarea::placeholder{
+    padding: 10px;
+    color: rgba(128, 128, 128, 0.5);
+}
+
+button{
+    width: 150px;
+    height: 30px;
+    margin-right: 0px;
+    margin-bottom: 60px;
+    font-size: 12px;
+    display: block; 
+    background-color: rgba(2, 36, 74, 0.904);
+    color: white;
+}
+
+/*왼쪽 part*/
+#leftwrapper{
+    width: 30%;
+}
+
+input#search{
+    margin-bottom: 80px;
+}
+
+#input-container {
+    position: relative;
+}
+
+#input-container img {
+    position: absolute;
+    width: 30px; /* 이미지의 크기 조절 */
+    height: 30px;
+    margin: 10px 0px 0px 320px;
+}
+
+#categories{
+    padding: 10px;
+    display: flex;
+}
+
+div#num{
+    margin-right: 0px; /*맨끝 정렬*/
+    color: rgb(55, 176, 232);
+    font-weight: bold;
+}
+
+#categories-container {
+    display: flex; /*두 아이템을 나란히 정렬하기 위함*/
+    align-items: center; 
+}
+
+#categories-container img {
+    width: 10px; /* 이미지의 크기 조절 */
+    height: 10px;
+    margin-left: 30px;
+}
+
+#categories2{
+    width: 90%;
+    padding: 10px 0 10px 10px;
+    display: flex;
+    color: orange;
+    font-weight: bold;
+}
+
+div#num2{
+    width: 10%;
+    margin-right: -5px; /*다른 아이템들과 양끝을 맞추기 위함*/
+    color: orange;
+    font-weight: bold;
 }
