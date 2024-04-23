@@ -1,7 +1,9 @@
 * {
     box-sizing: border-box;
     margin: 0 auto;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 
 #wrapper{
     width: 1300px; /*수평으로 가운데 정렬하기 위함*/
@@ -29,7 +31,7 @@
 
 #top p{
     font-size: 15px;
-    font-weight: 100;
+    font-weight: lighter;
     line-height: 2;
 }
 
@@ -155,4 +157,160 @@ div#box_blue p{
     top: 58%; 
     transform: translate(-50%, -50%); 
     padding-right: 50px;
+}
+
+/*press*/
+section{
+    display: flex;
+    justify-content: space-between;/*가로 축을 기준으로 좌우 정렬:동일한 간격으로 정렬*/
+    margin: 80px 80px 80px 80px;
+}
+
+#first h1{
+    padding-bottom: 30px;
+}
+
+#first p{
+    line-height: 2;
+    color: grey;
+}
+
+#first button{
+    width: 100px;
+    height: 40px;
+    background-color: rgba(2, 36, 74, 0.904);
+    color: white;
+    margin: 30px 0px 0px 450px;
+    border-radius: 5px; /*박스 테두리에 라운드 넣기 */
+}
+#second, #third{
+    width: 240px;
+}
+#second h1, #third h1{    
+    position: relative;
+    font-size: 17px;
+}
+
+#second img{
+    position: absolute;
+    top: -10px;
+    left: 210px;
+}
+
+#second div{
+    position: absolute;
+    top: 0px;
+    left: 222px;
+    color: white;
+    z-index: 1;
+}
+#second hr, #third hr{
+    margin: 15px 0px;
+    
+}
+
+#second p,  #third p{
+    font-size: 13px;
+    font-weight: bold;
+    color: grey;
+}
+
+#second p:hover,  #third p:hover{
+    color: orange;
+    font-weight: bold;
+}
+
+#second hr#topline,  #third hr#topline{
+    border: none; /* 기본 테두리 제거 */
+    border-top: 3px solid black; /* 원하는 굵기로 테두리 설정 */
+}
+
+#third img{
+    position: absolute;
+    top: -10px;
+    left: 210px;
+}
+
+#third div{
+    position: absolute;
+    top: 0px;
+    left: 222px;
+    color: white;
+    z-index: 1;
+}
+
+/*quote*/
+#quote{
+    position: relative;
+    display:flex;
+    flex-direction: column; /* 수직으로 정렬 */
+    width: 100%;
+    height: 420px;
+    background-color: rgba(0, 171, 238, 0.99);
+    color: white;
+   overflow: hidden; /* 넘치는 부분 잘라내기 */
+}
+
+#quote img{
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+#quote p{
+    line-height: 2.5;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+#quote span{
+    color: black;
+    font-size: 15px;
+}
+
+#peoples{
+    position: absolute; 
+    top: 30%; 
+    left: 0; 
+
+}
+
+/*clinets*/
+#clients {
+    margin: 80px 0px 50px 0px;
+    color: grey;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
+/* 부모 요소를 가운데 정렬 */
+.table-container {
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse; /* 셀 경계를 병합 : 하나의 단일 경계로 바꿈 */
+    margin: 0 auto; /*가운데 정렬 */
+    margin-bottom: 80px;
+}
+
+table, th, td {
+    padding: 30px; /* 각 셀에 내부 여백 추가 */
+    text-align: center;
+}
+
+.tb_row, .tb_column {
+    width: 25%; /* 각 행의 크기를 동일하게 설정 */
+    border-right: 1px solid lightgrey;
+}
+
+.tr_column { /* 각 행의 하단에 테두리 추가 */
+    border-bottom: 1px solid lightgrey;
+}
+
+.tb_row img {
+    max-width: 100%; /* 이미지의 최대 너비 지정 */
+    height: auto; /* 이미지 비율 유지 */
 }
