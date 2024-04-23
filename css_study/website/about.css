@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     margin: 0 auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /*Contact Us*/
@@ -20,12 +21,12 @@
     align-items: center;
 }
 div#about{
-    font-size: 15px;
+    font-size: 18px;
     margin-left: 80px;
 }
 div#page{
-    font-size: 11px;
-    margin-left: 900px;
+    font-size: 15px;
+    margin-left: 800px;
     gap : 10px;
     display: flex;/*한줄로 나란히 */
 }
