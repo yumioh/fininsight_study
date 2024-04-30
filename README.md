@@ -1,6 +1,6 @@
 # fininsight_study Repository
 
-#### - css_study : css관련 스터디 및 실습 폴더
+#### - css_study : css 관련 스터디 및 실습 폴더
 
 #### - html_study : html 관련 스터디 및 실습 폴더
 
