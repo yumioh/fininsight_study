@@ -12,7 +12,7 @@
 <br/>
 
 - 기준 기간 : 2019.01 ~ 2024.04 (API가 2019년 부터 데이터를 제공)<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp; <ins>=> 기간이 짧아 코로나 시점 전/후 비교로 트랜드 분석 </ins>
+&emsp;&emsp;&emsp;&emsp;&emsp; <ins>=> 기간이 짧아 코로나 시점 전/후 시점 비교로 트랜드 분석 </ins>
 <br/>
 
 - 사용 언어 : python
