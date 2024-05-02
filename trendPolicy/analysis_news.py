@@ -1,13 +1,20 @@
 import json
-import requests
+import pandas as pd
 from api_manager import fetch_all_newsdata
 
 all_news_data = fetch_all_newsdata("2024-04-01", "2024-04-30", 100, "청년 정책")
 
 # 모든 데이터가 수집된 후 해당하는 폴더에 저장
+file_date = "_2404"
 directory = "./trendPolicy/news_data/"
-file_name = "complete_news_data.json"
+file_name = "news_data" + file_date
 
-with open(directory + file_name, 'w', encoding='utf-8') as file:
+#json 파일로 만들기
+with open(directory + file_name +".json", 'w', encoding='utf-8') as file:
     json.dump(all_news_data, file, ensure_ascii=False, indent=4) 
     #ensure_ascii=False : ASCII 문자만 사용할지 여부,  indent=4 : 들여쓰기
+
+
+#csv 파일
+news_df = pd.DataFrame(all_news_data)
+news_df.to_csv(directory + file_name +".csv", index=False, encoding="utf-8-sig")
