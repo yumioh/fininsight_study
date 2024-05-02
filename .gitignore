@@ -3,6 +3,7 @@
 *.txt
 *.xlsx
 *.xls
+*.env
 
 #무시할 폴더명
 img/
