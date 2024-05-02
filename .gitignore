@@ -4,6 +4,7 @@
 *.xlsx
 *.xls
 *.env
+*.json
 
 #무시할 폴더명
 img/
