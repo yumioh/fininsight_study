@@ -6,7 +6,7 @@ from api_manager import fetch_buzz_volume
 all_buzz_volume = fetch_buzz_volume("2019-01-01", "2019-12-31", "month", "청년 정책")
 
 file_date = "_2019_01"
-directory = "./trendPolicy/buzz_data/"
+directory = "./trendAnalysis/buzz_data/"
 file_name = "buzz_data"+file_date
 
 #json 파일

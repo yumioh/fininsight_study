@@ -5,7 +5,7 @@ from api_manager import fetch_sentiment_score
 all_sentiment_score = fetch_sentiment_score("2019-01-01", "2019-12-31","청년 정책", "day", "character")
 
 file_date = "_2019_01"
-directory = "./trendPolicy/sentiment_data/"
+directory = "./trendAnalysis/sentiment_data/"
 file_name = "sentiment_data"+file_date
 
 #json 파일

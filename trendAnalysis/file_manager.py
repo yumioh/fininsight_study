@@ -23,9 +23,9 @@ def merge_csv_files(directory, year):
     combined_df.to_csv(os.path.join(directory, f'merged_news_data_{year}.csv'), index=False)
     print(f'Merged file saved: {directory}/merged_news_data_{year}.csv')
 
-# 사용 예
-directory = './trendPolicy/news_data/'
-year = '2020'
-merge_csv_files(directory, year)
+#사용 예
+# directory = './trendPolicy/news_data/'
+# year = '2020'
+# merge_csv_files(directory, year)
 
 
