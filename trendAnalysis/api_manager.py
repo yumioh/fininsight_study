@@ -3,6 +3,15 @@ import requests
 from dotenv import load_dotenv
 import os
 
+"""
+API 관련 
+
+- fetch_all_newsdata : 주어진 키워드에 뉴스 데이터 부르는 API
+- fetch_buzz_volume : 주어진 키워드에 해당하는 언급량 API 
+- fetch_sentiment_score : 주어진 키워드에 해당하는 감정분석 API (긍정/부정)
+
+"""
+
 # 환경 변수 로드
 load_dotenv()
 token_key = os.getenv('API_TOKEN_KEY')  # env에서 토큰키 들고 오기

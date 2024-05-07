@@ -2,6 +2,18 @@ import pandas as pd
 import re
 from file_manager import merge_csv_files
 
+"""
+뉴스 데이터 전처리 
+
+- 정규표헌식을 통한 특수 문자 제외
+- 여러개의 공백 제거 
+- 결측치 제외 
+- 뉴스 본문과 날짜 컬럼만 추출
+- 140자 이하 뉴스 제외(광고나 짧은 뉴스는 본문 내용이 큰 의미가 없다고 봄)
+- 날짜포맷 변환 (다른 데이터에서 날짜 포맷을 "YYYY-mm-dd" 형태로 사용)
+
+"""
+
 ##뉴스 전처리 
 
 # 여러 개의 공백을 한 개의 공백으로 줄이는 함수
@@ -31,8 +43,8 @@ print("raw data :" , all_news_df.shape)
 all_news_df = all_news_df.dropna(axis=0)
 print("결측지 여부 확인 : ", all_news_df.shape)
 
-#키워드 추출을 위해 내용만 컬럼만 추출
-news_content_df = all_news_df[["content"]]
+#키워드 추출을 위해 뉴스 본문과 날짜 컬럼만 추출
+news_content_df = all_news_df[["content",'inp_date']]
 #print(selected_content_df)
 
 # 데이터프레임 복사본 생성
@@ -50,7 +62,14 @@ content_df_copy['content'] = content_df_copy['content'].map(remove_special)
 print("######## 전처리된 데이터 #######")
 print(content_df_copy['content'].head())
 
+#날짜 변환
+#dates = raw_dates.strftime("YYYY-mm-dd")
+
+#content 기사 길이가 140자 이하인 경우 제외
+content_df_copy = content_df_copy.loc[content_df_copy['content'].str.len() > 140]
+print(content_df_copy.info())
+
 # 전처리한 데이터 파일로 저장
-#content_df_copy.to_csv('./trendAnalysis/news_data/processed_data_2020.csv' , index=False, encoding='utf-8-sig')
+content_df_copy.to_csv('./trendAnalysis/news_data/processed_data_2020.csv' , index=False, encoding='utf-8-sig')
 
 

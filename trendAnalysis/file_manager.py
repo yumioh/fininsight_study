@@ -2,6 +2,13 @@ import pandas as pd
 import glob
 import os
 
+"""
+파일 관련 
+
+- 수집한 데이터 CSV 파일 합치기
+
+"""
+
 def merge_csv_files(directory, year):
     # 지정된 연도의 파일 패턴 만들기
     file_pattern = os.path.join(directory, f'news_data_{year}*.csv')
