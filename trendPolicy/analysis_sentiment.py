@@ -2,9 +2,9 @@ import json
 import pandas as pd
 from api_manager import fetch_sentiment_score
 
-all_sentiment_score = fetch_sentiment_score("2024-04-01", "2024-04-30","청년 정책", "day", "character")
+all_sentiment_score = fetch_sentiment_score("2019-01-01", "2019-12-31","청년 정책", "day", "character")
 
-file_date = "_2404"
+file_date = "_2019_01"
 directory = "./trendPolicy/sentiment_data/"
 file_name = "sentiment_data"+file_date
 

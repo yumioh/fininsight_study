@@ -3,9 +3,9 @@ import pandas as pd
 from api_manager import fetch_buzz_volume
 
 
-all_buzz_volume = fetch_buzz_volume("2024-04-01", "2024-04-30", 100, "청년 정책")
+all_buzz_volume = fetch_buzz_volume("2019-01-01", "2019-12-31", "month", "청년 정책")
 
-file_date = "_2404"
+file_date = "_2019_01"
 directory = "./trendPolicy/buzz_data/"
 file_name = "buzz_data"+file_date
 

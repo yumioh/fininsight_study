@@ -28,7 +28,7 @@ def fetch_all_newsdata(start_date, end_date, size, keyword, synonyms=None, exOr=
     
     # API 요청 데이터 초기 구성
     data = {
-         "startDate": start_date,  #조회 시작 날짜     
+        "startDate": start_date,  #조회 시작 날짜     
         "endDate": end_date,      #조회 종료 날짜
         "search": { 
             "keyword": keyword,   #조회할 키워드
@@ -55,7 +55,12 @@ def fetch_all_newsdata(start_date, end_date, size, keyword, synonyms=None, exOr=
     response = requests.post(url=f"{URI}/api/biz/v1/documents", data=json.dumps(data), headers=headers)
     result = response.json()
     total_news_cnt = result['total']
-    print(total_news_cnt)
+    print("총개수 : " + str(total_news_cnt))
+    
+    # if response.status_code != 200:
+    #     print(f"API call failed with status code: {response.status_code}")
+    #     print(response.text)  # 실패 응답의 내용을 출력
+    #     return None
 
     all_documents = []  # 모든 문서를 저장할 리스트
 
@@ -71,14 +76,14 @@ def fetch_all_newsdata(start_date, end_date, size, keyword, synonyms=None, exOr=
 
 # 함수 사용 예시
 # all_news_documents = fetch_all_newsdata("2024-04-01", "2024-04-30", 100, "청년 정책")
+# all_news_documents = fetch_all_newsdata("2020-03-01", "2020-03-31", 10000, "정책", None, None, ["사회", "경제",  "사회", "경제", "생활/문화"], None)
 # print(all_news_documents)
-
 
 # Raw 언급량 데이터 조회 API ##############################################################
 """
     특정 키워드에서 언급량 불려오기 
 """
-def fetch_buzz_volume(start_date, end_date, size, keyword, synonyms=None, exOr=None, category=None, category_sub=None):
+def fetch_buzz_volume(start_date, end_date, interval, keyword, synonyms=None, exOr=None, category=None, category_sub=None):
     """
     주어진 파라미터로 언급량 데이터를 조회하고 총 합계를 계산하는 함수.
     """
@@ -95,7 +100,7 @@ def fetch_buzz_volume(start_date, end_date, size, keyword, synonyms=None, exOr=N
         "category": category if category else "",
         "category_sub": category_sub if category_sub else "",
         "language": "ko",
-        "interval": "day",
+        "interval": interval,
         "token": token_key
     }
 
