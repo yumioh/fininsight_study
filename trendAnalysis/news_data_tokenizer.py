@@ -19,8 +19,10 @@ from datetime import datetime
 #불용어
 stop_words = ['지난해','지난','대통령','정치','장관','정책','한국','사업','정부','지원','종합','경제','코로나','올해'
               '기업','지역','사업','시장','산업','한국','추진','관련','사회','국민','상황','가능','서울','필요','이번'
-              '경우','대상','우리','총선','후보','실장','국회','공천','공약','국회의원','지역구','이번','여당',
-              '회의','선거','출마','보수','위원장','국내','행위','출시','이후','바이러스','기사','청와대','전년']
+              '경우','대상','우리','총선','후보','실장','국회','공천','공약','국회의원','지역구','이번','여당','기업'
+              '회의','선거','출마','보수','위원장','국내','행위','출시','이후','바이러스','기사','청와대','전년','우한'
+              '중국','지금','도시','기술','제품','시민','부패','검찰','인사','폐렴','대표','수사','민주당','그룹','이날'
+              '분류','의원','설명','기준','운영','공급','위원회','이후','경기','사람','방안','활용']
 
 #불용어 처리 함수
 def remove_stopwords(tokens):
@@ -39,8 +41,10 @@ def noun_tagging(df) :
   mecab = Mecab('C:\mecab\share\mecab-ko-dic')
   return df.apply(lambda x: [mecab.nouns(word) for word in x]) 
 
-#파일명
-timestamp = datetime.now().strftime("%y%m%d_%H%M")
+data_year = '2020'
+
+#파일명 중복을 피하기 위함
+timestamp = data_year + datetime.now().strftime("_%H%M")
 
 #2020년도 : 325805건
 # news_df = pd.read_csv("./trendAnalysis/news_data/processed_data_2020.csv")
@@ -100,8 +104,5 @@ print(" ****불용어 처리 후 최빈어 조회**** : ", most_common_words)
 
 #총 데이터 개수 : 309300
 # news_df[['content','inp_date']].to_csv('./trendAnalysis/news_data/news_data_tokenized_2020.csv' , index=False, encoding='utf-8-sig')
-news_df['content'].to_csv('./trendAnalysis/news_data/news_data_tokenized_{timestamp}.csv' , index=False, encoding='utf-8-sig')
-
-# 불용어 처리 및 최빈값 조회 확인
-# 버즈량과 감정분석 데이터 2020년도 수집 
-# LDA 모델링 및 워드 클라우드 시각화 
+filename = f'./trendAnalysis/news_data/news_data_tokenized_2020_{timestamp}.csv'
+news_df['content'].to_csv(filename, index=False, encoding='utf-8-sig')

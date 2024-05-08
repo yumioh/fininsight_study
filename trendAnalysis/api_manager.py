@@ -96,18 +96,29 @@ def fetch_buzz_volume(start_date, end_date, interval, keyword, synonyms=None, ex
     """
     주어진 파라미터로 언급량 데이터를 조회하고 총 합계를 계산하는 함수.
     """
+
+    # 선택적 인자 처리
+    if synonyms is None:
+        synonyms = []
+    if exOr is None:
+        exOr = []
+    if category is None:
+        category = []
+    if category_sub is None:
+        category_sub = []
+
     data = {
         "startDate": start_date,
         "endDate": end_date,
         "search": {
             "keyword": keyword,
-            "synonyms": synonyms if synonyms else [],
+            "synonyms": synonyms, #동의어 
             "filter": {
-                "exOr": exOr if exOr else []
+                "exOr": exOr
             }
         },
-        "category": category if category else "",
-        "category_sub": category_sub if category_sub else "",
+        "category": category,
+        "category_sub": category_sub,
         "language": "ko",
         "interval": interval,
         "token": token_key
@@ -132,7 +143,7 @@ def fetch_buzz_volume(start_date, end_date, interval, keyword, synonyms=None, ex
     return response.json()
 
 # 함수 사용 예시
-#data = fetch_buzz_and_calculate_total("2024-04-01", "2024-04-30", 100, "청년 정책")
+#data = fetch_buzz_volume("2024-04-01", "2024-04-30", "day", "청년 정책")
 
 
 # Raw 반응 데이터 조회 API ##############################################################
@@ -157,7 +168,7 @@ def fetch_sentiment_score(start_date, end_date, keyword, interval, model, synony
         "endDate": end_date,    
         "search": {
             "keyword": keyword,
-            "synonyms": synonyms,
+            "synonyms": synonyms,  #동의어 
             "filter": {
                 "exOr": exOr
             }

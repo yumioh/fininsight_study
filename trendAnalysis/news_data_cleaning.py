@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 from file_manager import merge_csv_files
+from datetime import datetime
 
 """
 뉴스 데이터 전처리 
@@ -14,8 +15,6 @@ from file_manager import merge_csv_files
 
 """
 
-##뉴스 전처리 
-
 # 여러 개의 공백을 한 개의 공백으로 줄이는 함수
 def reduce_multiple_spaces(text):
     return re.sub(r'\s+', ' ', text)
@@ -28,10 +27,14 @@ def remove_special(text):
     text = pattern_onlyKorean.sub('',text)
     return text
 
+data_year = '2020'
+
+#파일명 중복을 피하기 위함
+timestamp = data_year + datetime.now().strftime("_%H%M")
+
 #2020년도별 파일 merge
 directory = './trendAnalysis/news_data/'
-year = '2020'
-#merge_csv_files(directory, year)
+#merge_csv_files(directory, data_year)
 
 #merge한 파일 들고 오기 
 all_news_df = pd.read_csv("./trendAnalysis/news_data/merged_news_data_2020.csv")
@@ -72,6 +75,7 @@ content_df_copy = content_df_copy.loc[content_df_copy['content'].str.len() > 140
 print(content_df_copy.info())
 
 # 전처리한 데이터 파일로 저장
-content_df_copy.to_csv('./trendAnalysis/news_data/processed_data_2020.csv' , index=False, encoding='utf-8-sig')
+filename = f'./trendAnalysis/news_data/processed_data_2020_{timestamp}.csv'
+content_df_copy.to_csv('' , index=False, encoding='utf-8-sig')
 
 

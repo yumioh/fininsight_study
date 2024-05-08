@@ -18,25 +18,29 @@ from datetime import datetime
 - 워드 클라우드 
 
 """
-#폰트 경로
+#워드 클라우드 폰트 경로
 load_dotenv()
-font_path = os.getenv('font_path') 
+path = os.getenv('font_path') 
 
-#파일명
-timestamp = datetime.now().strftime("%y%m%d_%H%M")
+data_year = '2020'
 
+#파일명 중복을 피하기 위함
+timestamp = data_year + datetime.now().strftime("_%H%M")
 
 #전처리된 뉴스 파일 가져오기 
 #2020년도 : 309300건
 news_df = pd.read_csv("./trendAnalysis/news_data/news_data_tokenized_2020.csv")
 print(news_df.head())
 
+# memory erorr로 인하여 30만개 중 5만 개만 샘플링데이터 랜덤으로 샘플림하여 모델링
+news_df = news_df.sample(n=50000, random_state=42) 
+
 #데이터 프레임의 각 행을 리스트 형태로 변환
 #문자열로 저장된 리스트를 실제 리스트로 변환
-news_df= news_df[:10000]
 news_df['tokens'] = news_df['content'].apply(literal_eval)
 
 print("---------------------워드 클라우드------------------------")
+
 """"
 
 워드 클라우드 순서
@@ -52,7 +56,7 @@ all_tokens = [token for tokens in news_df['tokens'] for token in tokens]
 word_freq = Counter(all_tokens)
 
 # 나눔고딕 폰트 경로 (예시: Windows의 경우)
-font_path = font_path + "NanumBarunGothic.ttf"
+font_path = path + "NanumBarunGothic.ttf"
 
 # 워드 클라우드 생성
 wordcloud = WordCloud(
@@ -70,7 +74,8 @@ wordcloud = WordCloud(
 # plt.show()
 
 # 워드 클라우드 이미지를 파일로 저장
-wordcloud.to_file('./trendAnalysis/news_data/visualization/wordcloud_{timestamp}.png')
+filename = f'./trendAnalysis/news_data/visualization/wordcloud_{timestamp}.png'
+wordcloud.to_file(filename)
 
 """
 LDA 모델링 순서
@@ -112,8 +117,9 @@ def lda_modeling_and_visualization():
         print(f"Document {index}: {topic_dist}")
 
     # pyLDAvis로 시각화 준비 및 저장
+    filename = f'./trendAnalysis/news_data/visualization/lda_visualization_{timestamp}.html'
     vis = gensimvis.prepare(lda_model, corpus, dictionary)
-    pyLDAvis.save_html(vis, './trendAnalysis/news_data/visualization/lda_visualization_{timestamp}.html')
+    pyLDAvis.save_html(vis, filename)
 
 if __name__ == "__main__":
     lda_modeling_and_visualization()
