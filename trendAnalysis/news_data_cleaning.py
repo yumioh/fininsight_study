@@ -45,7 +45,7 @@ print("결측지 여부 확인 : ", all_news_df.shape)
 
 #키워드 추출을 위해 뉴스 본문과 날짜 컬럼만 추출
 news_content_df = all_news_df[["content",'inp_date']]
-#print(selected_content_df)
+print(news_content_df[:10])
 
 # 데이터프레임 복사본 생성
 content_df_copy = news_content_df.copy()
@@ -63,7 +63,9 @@ print("######## 전처리된 데이터 #######")
 print(content_df_copy['content'].head())
 
 #날짜 변환
-#dates = raw_dates.strftime("YYYY-mm-dd")
+content_df_copy['inp_date'] = pd.to_datetime(content_df_copy['inp_date'])
+content_df_copy['inp_date'] = content_df_copy['inp_date'].dt.strftime("%Y-%m-%d")
+print(content_df_copy['inp_date'][:10])
 
 #content 기사 길이가 140자 이하인 경우 제외
 content_df_copy = content_df_copy.loc[content_df_copy['content'].str.len() > 140]
