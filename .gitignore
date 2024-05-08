@@ -6,5 +6,8 @@
 *.env
 *.json
 
+
 #무시할 폴더명
-img/
+buzz_data/
+news_data/
+sentiment_data/

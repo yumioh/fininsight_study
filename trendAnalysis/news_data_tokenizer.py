@@ -2,6 +2,7 @@ import pandas as pd
 from konlpy.tag import Mecab
 from collections import Counter
 from ast import literal_eval
+from datetime import datetime
 
 """
 뉴스 데이터 토큰화 
@@ -37,6 +38,9 @@ def flatten_nested_list(nested_list):
 def noun_tagging(df) :
   mecab = Mecab('C:\mecab\share\mecab-ko-dic')
   return df.apply(lambda x: [mecab.nouns(word) for word in x]) 
+
+#파일명
+timestamp = datetime.now().strftime("%y%m%d_%H%M")
 
 #2020년도 : 325805건
 # news_df = pd.read_csv("./trendAnalysis/news_data/processed_data_2020.csv")
@@ -96,7 +100,7 @@ print(" ****불용어 처리 후 최빈어 조회**** : ", most_common_words)
 
 #총 데이터 개수 : 309300
 # news_df[['content','inp_date']].to_csv('./trendAnalysis/news_data/news_data_tokenized_2020.csv' , index=False, encoding='utf-8-sig')
-news_df['content'].to_csv('./trendAnalysis/news_data/news_data_tokenized_2020.csv' , index=False, encoding='utf-8-sig')
+news_df['content'].to_csv('./trendAnalysis/news_data/news_data_tokenized_{timestamp}.csv' , index=False, encoding='utf-8-sig')
 
 # 불용어 처리 및 최빈값 조회 확인
 # 버즈량과 감정분석 데이터 2020년도 수집 

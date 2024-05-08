@@ -7,6 +7,9 @@ from ast import literal_eval
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from collections import Counter
+from dotenv import load_dotenv
+import os
+from datetime import datetime
 
 """
 뉴스 데이터 분석
@@ -15,6 +18,13 @@ from collections import Counter
 - 워드 클라우드 
 
 """
+#폰트 경로
+load_dotenv()
+font_path = os.getenv('font_path') 
+
+#파일명
+timestamp = datetime.now().strftime("%y%m%d_%H%M")
+
 
 #전처리된 뉴스 파일 가져오기 
 #2020년도 : 309300건
@@ -41,17 +51,26 @@ all_tokens = [token for tokens in news_df['tokens'] for token in tokens]
 # 단어 빈도 계산
 word_freq = Counter(all_tokens)
 
+# 나눔고딕 폰트 경로 (예시: Windows의 경우)
+font_path = font_path + "NanumBarunGothic.ttf"
+
 # 워드 클라우드 생성
-wordcloud = WordCloud(width=800, height=400, background_color='white', max_words=100).generate_from_frequencies(word_freq)
+wordcloud = WordCloud(
+    font_path=font_path, 
+    width=800, 
+    height=400, 
+    background_color='white', 
+    max_words=100
+    ).generate_from_frequencies(word_freq)
 
 # 워드 클라우드 표시
-plt.figure(figsize=(10, 5))
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis('off')
-plt.show()
+# plt.figure(figsize=(10, 5))
+# plt.imshow(wordcloud, interpolation='bilinear')
+# plt.axis('off')
+# plt.show()
 
 # 워드 클라우드 이미지를 파일로 저장
-wordcloud.to_file('./trendAnalysis/news_data/visualization/wordcloud_2020.png')
+wordcloud.to_file('./trendAnalysis/news_data/visualization/wordcloud_{timestamp}.png')
 
 """
 LDA 모델링 순서
@@ -94,7 +113,7 @@ def lda_modeling_and_visualization():
 
     # pyLDAvis로 시각화 준비 및 저장
     vis = gensimvis.prepare(lda_model, corpus, dictionary)
-    pyLDAvis.save_html(vis, './trendAnalysis/news_data/visualization/lda_visualization_2020.html')
+    pyLDAvis.save_html(vis, './trendAnalysis/news_data/visualization/lda_visualization_{timestamp}.html')
 
 if __name__ == "__main__":
     lda_modeling_and_visualization()
