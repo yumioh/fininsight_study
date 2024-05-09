@@ -22,14 +22,13 @@ from datetime import datetime
 load_dotenv()
 path = os.getenv('font_path') 
 
-data_year = '2020'
-
 #파일명 중복을 피하기 위함
-timestamp = data_year + datetime.now().strftime("_%H%M")
+data_year = '2020_'
+timestamp = data_year + datetime.now().strftime("%m%d_%H%M")
 
 #전처리된 뉴스 파일 가져오기 
 #2020년도 : 309300건
-news_df = pd.read_csv("./trendAnalysis/news_data/news_data_tokenized_2020.csv")
+news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_20200905_1156.csv")
 print(news_df.head())
 
 # memory erorr로 인하여 30만개 중 5만 개만 샘플링데이터 랜덤으로 샘플림하여 모델링
