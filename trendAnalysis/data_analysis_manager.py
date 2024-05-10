@@ -21,7 +21,7 @@ def lda_modeling_and_visualization(corpus, dictionary, timestamp, keyword):
         print(f"Document {index}: {topic_dist}")
 
     # pyLDAvis로 시각화 준비 및 저장
-    filename = f'./trendAnalysis/news_data/visualization/{keyword}_lda_visualization_{timestamp}.html'
+    filename = f'./trendAnalysis/news_data/visualization/{keyword}_lda_{timestamp}.html'
     vis = gensimvis.prepare(lda_model, corpus, dictionary)
     pyLDAvis.save_html(vis, filename)
 

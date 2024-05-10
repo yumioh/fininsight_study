@@ -41,13 +41,30 @@ def main():
     #문자열로 저장된 리스트를 실제 리스트로 변환
     news_df['tokens'] = news_df['content'].apply(literal_eval)
 
-    # '청년' 키워드를 포함한 뉴스만 추출 : 
-    keyword = "youth"
-    youth_df = news_df[news_df['tokens'].apply(lambda tokens: '청년' in tokens)]
-    print("특정 키워드만 포함한 뉴스만 추출 : ", youth_df.info())
-    print(youth_df.head())
+    # 날짜를 datetime 형식으로 변환
+    news_df['date'] = pd.to_datetime(news_df['date'])
+    
+    start_date = '2020-08-03'
+    end_date = '2020-12-31'
 
-    youth_df['tokens'] = youth_df['tokens'].apply(lambda tokens: remove_keyword(tokens, '청년'))
+     # '청년' 키워드를 포함한 뉴스만 추출 : 
+    #youth_df = news_df[news_df['tokens'].apply(lambda tokens: '청년' in tokens)]
+   
+    keyword = "youth_act_after"
+
+    # 특정 기간에 해당하는 데이터만 추출
+    filtered_df = news_df[
+        (news_df['date'] >= start_date) & 
+        (news_df['date'] <= end_date) & 
+        (news_df['tokens'].apply(lambda tokens: '청년' in tokens))
+    ]
+    print("특정 기간 동안 해당하는 키워드가 포함된 뉴스 추출 : ", filtered_df.shape)
+    print(filtered_df.head())
+
+    filtered_df.to_csv("./trendAnalysis/news_data/keyword.csv", index=False, encoding="utf-8-sig")
+
+    #시각화를 위해 청년 키워드만 삭제
+    filtered_df['tokens'] = filtered_df['tokens'].apply(lambda tokens: remove_keyword(tokens, '청년'))
 
     print("---------------------워드 클라우드------------------------")
 
@@ -63,15 +80,13 @@ def main():
     filename = f'./trendAnalysis/news_data/visualization/{keyword}_wordcloud_{timestamp}.png'
 
     # 워드 클라우드 생성 함수 호출
-    create_wordcloud(youth_df, font_path, filename)
+    create_wordcloud(filtered_df, font_path, filename)
 
     # # 모든 토큰을 하나의 리스트로 합치기
     # all_tokens = [token for tokens in news['tokens'] for token in tokens]
 
     # # 단어 빈도 계산
     # word_freq = Counter(all_tokens)
-
-    # 
 
     # # 워드 클라우드 생성
     # wordcloud = WordCloud(
@@ -99,18 +114,18 @@ def main():
     print("---------------------사전 생성------------------------")
 
     #딕셔너리 생성 
-    dictionary = Dictionary(youth_df['tokens'])
+    dictionary = Dictionary(filtered_df['tokens'])
     print("idword : ", list(dictionary.items())[:10])
 
     #LDA 모델링을 위해 벡터화된 문서(코퍼스) 확인
-    corpus = [dictionary.doc2bow(tokens) for tokens in youth_df['tokens']]
+    corpus = [dictionary.doc2bow(tokens) for tokens in filtered_df['tokens']]
 
     #tfidf로 벡터화 적용
     tfidf = TfidfModel(corpus)
     corpus_TFIDF = tfidf[corpus]
     print("---------------------LDA 학습 시작------------------------")
     
-    lda_modeling_and_visualization(corpus, dictionary, timestamp, keyword)
+    lda_modeling_and_visualization(corpus_TFIDF, dictionary, timestamp, keyword)
 
 if __name__ == "__main__":
     main()
