@@ -66,16 +66,17 @@ print("######## 전처리된 데이터 #######")
 print(content_df_copy['content'].head())
 
 #날짜 변환
-content_df_copy['inp_date'] = pd.to_datetime(content_df_copy['inp_date'])
-content_df_copy['inp_date'] = content_df_copy['inp_date'].dt.strftime("%Y-%m-%d")
-print(content_df_copy['inp_date'][:10])
+content_df_copy['date'] = pd.to_datetime(content_df_copy['inp_date'])
+content_df_copy['date'] = content_df_copy['date'].dt.strftime("%Y-%m-%d")
+print(content_df_copy['date'][:10])
 
 #content 기사 길이가 140자 이하인 경우 제외
 content_df_copy = content_df_copy.loc[content_df_copy['content'].str.len() > 140]
 print(content_df_copy.info())
+print("content_df_copy : ", content_df_copy.head())
 
 # 전처리한 데이터 파일로 저장
 filename = f'./trendAnalysis/news_data/processed_data_{timestamp}.csv'
-content_df_copy.to_csv('' , index=False, encoding='utf-8-sig')
+content_df_copy[['date','content']].to_csv(filename, index=False, encoding='utf-8-sig')
 
 

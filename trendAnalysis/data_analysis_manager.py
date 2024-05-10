@@ -27,7 +27,7 @@ def lda_modeling_and_visualization(corpus, dictionary, timestamp, keyword):
 
 
 #데이터프레임으로부터 워드 클라우드를 생성하는 함수
-def create_wordcloud(df, font_path, image_path, width=800, height=400, background_color='white', max_words=50):
+def create_wordcloud(df, font_path, image_path, width=800, height=400, background_color='white', max_words=60):
     # 모든 토큰을 하나의 리스트로 합치기
     all_tokens = [token for tokens in df['tokens'] for token in tokens]
 

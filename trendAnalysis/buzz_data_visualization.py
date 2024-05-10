@@ -10,7 +10,7 @@ import matplotlib.dates as mdates
 
 """
 
-keyword = "policy"
+keyword = "youth_act"
 
 #청년
 youth_buzz_2020 = pd.read_csv("./trendAnalysis/buzz_data/buzz_청년_day_2020.csv")
@@ -26,12 +26,16 @@ policy_buzz_2023 = pd.read_csv("./trendAnalysis/buzz_data/buzz_정책_day_2023.c
 policy_buzz_2020['date'] = pd.to_datetime(policy_buzz_2020['date'])
 policy_buzz_2023['date'] = pd.to_datetime(policy_buzz_2023['date'])
 
+#청년기본법
+youth_act_buzz_2023 = pd.read_csv("./trendAnalysis/buzz_data/buzz_청년기본법_day_2020_2023.csv")
+youth_act_buzz_2023['date'] = pd.to_datetime(youth_act_buzz_2023['date'])
+
 
 print("---------------------시계열 그래프 그리기(개별적)------------------------")
 
 plt.figure(figsize=(10,8))
-plt.title("Buzz Mentions in 2020")
-plt.plot(policy_buzz_2020["date"], policy_buzz_2020["buzz"], "-", label="2020", color="red")
+plt.title("Buzz Volume from 2020 to 2024 ")
+plt.plot(youth_act_buzz_2023["date"], youth_act_buzz_2023["buzz"], "-", label="2020", color="red")
 plt.grid()
 
 #모든 날짜 표기 
@@ -72,7 +76,7 @@ save_path = f"./trendAnalysis/buzz_data/visualization/{keyword}_buzz_comparison.
 # 레이블, 타이틀, 범례 등 추가
 plt.xlabel("Day")
 plt.ylabel("Buzz Count")
-plt.title("Daliy Mentions")
+plt.title("Daliy Buzz Volume")
 plt.legend()
 plt.tight_layout()
 plt.savefig(save_path, dpi=300)  # dpi를 높이면 해상도가 좋아집니다

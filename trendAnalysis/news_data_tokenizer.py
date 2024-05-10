@@ -29,7 +29,8 @@ stop_words = ['지난해','지난','대통령','정치','장관','정책','한�
               '최근','서비스','현재','정보','전망','규제','증가','결과','세계','문화','시설','활동','시작','생각','주요',
               '효과','전국','영향','업무','우려','구축','기간','사태','지방','지급','수출','과정','행정','시행','수준','제공',
               '위원','은행','상승','피해','감소','지속','조치','문재인','생산','결정','주장','사건','과장','확진','환자',
-              '분기','단지','사업자','선정']
+              '분기','단지','사업자','선정','서울시','서울','최대','경기도','저희','사실','부분','나라','중요','이유','무엇',
+              '당시','다음','오전']
 
 #불용어 처리 함수
 def remove_stopwords(tokens):
@@ -48,12 +49,13 @@ def noun_tagging(df) :
   mecab = Mecab('C:\mecab\share\mecab-ko-dic')
   return df.apply(lambda x: [mecab.nouns(word) for word in x]) 
 
-#파일명 중복을 피하기 위함
+#파일명
 data_year = '2020_'
-timestamp = data_year + datetime.now().strftime("%m%d_%H%M")
+timestamp = data_year + datetime.now().strftime("%m%d")
 
-#2020년도 : 325805건
-news_df = pd.read_csv("./trendAnalysis/news_data/processed_data_2020.csv")
+#2020년도 : 309300건
+news_df = pd.read_csv("./trendAnalysis/news_data/processed_data_2020_0510.csv")
+print("news_df :", news_df.shape)
 print(news_df.head())
 
 # #공백기준으로 본문 내용 split
@@ -62,7 +64,7 @@ print("\n 공백기준으로 본문 split :", news_df[:5])
 
 print("---------------------품사부착 및 파일 저장 (PoS Tagging)------------------------")
 
-#명사 추출
+# #명사 추출
 # news_df['noun_tokens'] = noun_tagging(news_df['split_content'])
 # print("\n 본문 명사만 추출 : ", news_df['noun_tokens'][:5])
 # print(news_df.shape)
@@ -70,16 +72,17 @@ print("---------------------품사부착 및 파일 저장 (PoS Tagging)--------
 
 # # split 데이터를 각 하나의 리스트로 만들기 # split 데이터를 각 하나의 리스트로 만들기 
 # news_df['flatted_noun_tokens'] = news_df['noun_tokens'].apply(flatten_nested_list)
-# print(news_df['flatted_noun_tokens'][:10])
+# print('flatted_noun_tokens', news_df['flatted_noun_tokens'].head())
 
-#mecab 실행시 메모리 부족 에러로 mecab 결과 파일로 저장
+# #mecab 실행시 메모리 부족 에러로 mecab 결과 파일로 저장
 # mecab_filename = f'./trendAnalysis/news_data/news_mecab_{timestamp}.csv'
-# news_df[['flatted_noun_tokens','inp_date']].to_csv(mecab_filename, index=False, encoding='utf-8-sig')
+# news_df[['flatted_noun_tokens','date']].to_csv(mecab_filename, index=False, encoding='utf-8-sig')
 
 print("--------------------- 불용어 처리 및 최빈값 조회 ------------------------")
 
 #파일 데이터 프레임 형태로 불려오기 
-news_df = pd.read_csv("./trendAnalysis/news_data/news_mecab_2020_1011.csv")
+news_df = pd.read_csv("./trendAnalysis/news_data/news_mecab_2020_0510.csv")
+print(news_df.shape)
 print(news_df.head())
 
 # 리스트 형태로 복원 (문자열을 실제 리스트로 변환)
@@ -102,7 +105,7 @@ print("한글자 제외 : ", news_df['flatted_noun_tokens'].head())
 #불용어처리 
 news_df['content'] = news_df['flatted_noun_tokens'].apply(remove_stopwords) 
 print("\n 불용어 처리 : ", news_df['content'].head())
-print(news_df.info())
+print(news_df.shape)
 
 # 최빈어를 조회하여 불용어 제거 대상 선정
 most_common_tag = [word for tokens in news_df['content'] for word_list in tokens for word in str(word_list).split()]
@@ -112,4 +115,4 @@ print(" ****불용어 처리 후 최빈어 조회**** : ", most_common_words)
 #총 데이터 개수 : 309300
 # news_df[['content','inp_date']].to_csv('./trendAnalysis/news_data/news_data_tokenized_2020.csv' , index=False, encoding='utf-8-sig')
 filename = f'./trendAnalysis/news_data/news_tokenized_{timestamp}.csv'
-news_df['content'].to_csv(filename, index=False, encoding='utf-8-sig')
+news_df.to_csv(filename, index=False, encoding='utf-8-sig')

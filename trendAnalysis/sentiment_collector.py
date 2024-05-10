@@ -11,7 +11,7 @@ from api_manager import fetch_sentiment_score
 """
 
 directory = "./trendAnalysis/sentiment_data/"
-keyword = "정책"
+keyword = "청년기본법"
 interval = "day"
 model = "all" #전체 데이터에 대한 감정분석만 
 date = "2020"

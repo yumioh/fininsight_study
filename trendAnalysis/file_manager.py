@@ -107,5 +107,5 @@ def merge_csv_in_dir(base_directory, year, keyword):
 
 # 사용 예시
 # 하나의 디렉토리를 입력받습니다
-base_directory = "./trendAnalysis/sentiment_data/"
-merge_csv_in_dir(base_directory, 2023, "정책")
+# base_directory = "./trendAnalysis/sentiment_data/"
+# merge_csv_in_dir(base_directory, 2023, "정책")

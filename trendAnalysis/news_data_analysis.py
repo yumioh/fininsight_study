@@ -7,6 +7,11 @@ from dotenv import load_dotenv
 from datetime import datetime
 from data_analysis_manager import lda_modeling_and_visualization, create_wordcloud
 
+
+#청년 키워드 제외하고 모델링
+def remove_keyword(tokens, keyword='청년'):
+    return [token for token in tokens if token != keyword]
+
 def main():
     """
     뉴스 데이터 분석
@@ -25,7 +30,8 @@ def main():
 
     #전처리된 뉴스 파일 가져오기 
     #2020년도 : 309300건
-    news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_20_0509_1156.csv")
+    news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_2020_0510.csv")
+    print(news_df.shape)
     print(news_df.head())
 
     # memory erorr로 인하여 30만개 중 5만 개만 샘플링데이터 랜덤으로 샘플림하여 모델링
@@ -41,6 +47,7 @@ def main():
     print("특정 키워드만 포함한 뉴스만 추출 : ", youth_df.info())
     print(youth_df.head())
 
+    youth_df['tokens'] = youth_df['tokens'].apply(lambda tokens: remove_keyword(tokens, '청년'))
 
     print("---------------------워드 클라우드------------------------")
 
