@@ -8,14 +8,15 @@ from datetime import datetime
 from data_analysis_manager import lda_modeling_and_visualization, create_wordcloud
 
 
-#청년 키워드 제외하고 모델링
-def remove_keyword(tokens, keyword='청년'):
-    return [token for token in tokens if token != keyword]
+#제외할 키워드
+def remove_keywords(tokens, keywords):
+    return [token for token in tokens if token not in keywords]
 
 def main():
     """
     뉴스 데이터 분석
 
+    - 날짜별 키워드별 데이터 추출
     - LDA 모델링 
     - 워드 클라우드 
 
@@ -25,8 +26,7 @@ def main():
     path = os.getenv('font_path') 
 
     #파일명 중복을 피하기 위함
-    data_year = '2020_'
-    timestamp = data_year + datetime.now().strftime("%m%d_%H%M")
+    #timestamp = data_year+"_"+ datetime.now().strftime("%m%d")
 
     #전처리된 뉴스 파일 가져오기 
     #2020년도 : 309300건
@@ -44,62 +44,50 @@ def main():
     # 날짜를 datetime 형식으로 변환
     news_df['date'] = pd.to_datetime(news_df['date'])
     
-    start_date = '2020-08-03'
+    start_date = '2020-08-02'
     end_date = '2020-12-31'
 
-     # '청년' 키워드를 포함한 뉴스만 추출 : 
-    #youth_df = news_df[news_df['tokens'].apply(lambda tokens: '청년' in tokens)]
+    data_year = '2020'
+    subject = "employ_af"
+    keywords = ['취업','청년']
+     
+    #이중에 하나라도 포함된 행 선택
+    # news_df['tokens'].apply(lambda tokens: any(keyword in tokens for keyword in keywords))
+    # 해당하는 모든 키워드 선택
+    # news_df['tokens'].apply(lambda tokens: all(keyword in tokens for keyword in keywords))
+    # 하나의 키워드
+    #news_df['tokens'].apply(lambda tokens: '청년' in tokens)
    
-    keyword = "youth_act_after"
-
-    # 특정 기간에 해당하는 데이터만 추출
+    # 특정 기간과 해당하는 키워드 행만 추출
     filtered_df = news_df[
         (news_df['date'] >= start_date) & 
         (news_df['date'] <= end_date) & 
-        (news_df['tokens'].apply(lambda tokens: '청년' in tokens))
+        (news_df['tokens'].apply(lambda tokens: all(keyword in tokens for keyword in keywords)))
     ]
-    print("특정 기간 동안 해당하는 키워드가 포함된 뉴스 추출 : ", filtered_df.shape)
+    print("-----------------------------------------")   
+    print(f"특정 기간 동안 {subject}가 포함된 뉴스행 추출 : ", filtered_df.shape)
+    print("-----------------------------------------")
     print(filtered_df.head())
 
-    filtered_df.to_csv("./trendAnalysis/news_data/keyword.csv", index=False, encoding="utf-8-sig")
+    filtered_df.to_csv(f"./trendAnalysis/news_data/keyword_{subject}_{data_year}.csv", index=False, encoding="utf-8-sig")
 
     #시각화를 위해 청년 키워드만 삭제
-    filtered_df['tokens'] = filtered_df['tokens'].apply(lambda tokens: remove_keyword(tokens, '청년'))
+    #filtered_df['tokens'] = filtered_df['tokens'].apply(lambda tokens: remove_keywords(tokens, ['교육']))
+    filtered_df.loc[:, 'tokens'] = filtered_df['tokens'].apply(lambda tokens: remove_keywords(tokens, keywords))
 
     print("---------------------워드 클라우드------------------------")
 
     """"
-
     워드 클라우드 순서
     1. 단어 빈도 계산
     2. 워드 클라우드 생성
-
     """
     # 나눔고딕 폰트 경로 (예시: Windows의 경우) 
     font_path = path + "NanumBarunGothic.ttf"
-    filename = f'./trendAnalysis/news_data/visualization/{keyword}_wordcloud_{timestamp}.png'
+    filename = f'./trendAnalysis/news_data/visualization/wordcloud_{subject}_{data_year}.png'
 
     # 워드 클라우드 생성 함수 호출
     create_wordcloud(filtered_df, font_path, filename)
-
-    # # 모든 토큰을 하나의 리스트로 합치기
-    # all_tokens = [token for tokens in news['tokens'] for token in tokens]
-
-    # # 단어 빈도 계산
-    # word_freq = Counter(all_tokens)
-
-    # # 워드 클라우드 생성
-    # wordcloud = WordCloud(
-    #     font_path=font_path, 
-    #     width=800, 
-    #     height=400, 
-    #     background_color='white', 
-    #     max_words=100
-    #     ).generate_from_frequencies(word_freq)
-
-    # # 워드 클라우드 이미지를 파일로 저장
-    # filename = f'./trendAnalysis/news_data/visualization/wordcloud_{timestamp}.png'
-    # wordcloud.to_file(filename)
 
     """
     LDA 모델링 순서
@@ -123,9 +111,10 @@ def main():
     #tfidf로 벡터화 적용
     tfidf = TfidfModel(corpus)
     corpus_TFIDF = tfidf[corpus]
+    
     print("---------------------LDA 학습 시작------------------------")
     
-    lda_modeling_and_visualization(corpus_TFIDF, dictionary, timestamp, keyword)
+    lda_modeling_and_visualization(corpus_TFIDF, dictionary, data_year, subject)
 
 if __name__ == "__main__":
     main()

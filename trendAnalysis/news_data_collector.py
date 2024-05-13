@@ -8,11 +8,11 @@ from api_manager import fetch_all_newsdata
 
 # 모든 데이터가 수집된 후 해당하는 폴더에 저장
 directory = "./trendAnalysis/news_data/data/"
-keyword = "정책"
-date = "2023_12"
+keyword = "청년"
+date = "2020_12"
 
 #정책 관련 데이터 수집을 위해 사회, 경제, 생활/문화 분야로 한정
-all_news_data = fetch_all_newsdata("2023-12-01", "2023-12-30", 10000, keyword, None, None, ["사회", "경제", "생활/문화"], None)
+all_news_data = fetch_all_newsdata("2020-12-01", "2020-12-31", 10000, keyword, None, None, ["사회", "경제", "생활/문화"], None)
 
 #json 파일로 만들기
 # with open(directory + file_name +".json", 'w', encoding='utf-8') as file:

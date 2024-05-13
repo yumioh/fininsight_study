@@ -65,6 +65,8 @@ def merge_csv_files_in_directory(directory, year):
     combined_df.to_csv(os.path.join(directory, merged_filename), index=False)
     
     print(f'Merged file saved: {os.path.join(directory, merged_filename)}')
+    
+    return os.path.join(directory, merged_filename)
 
 # 예시 사용법
 #merge_csv_files_in_directory('./trendAnalysis/sentiment_data/', '2020')
@@ -104,6 +106,8 @@ def merge_csv_in_dir(base_directory, year, keyword):
     combined_df.to_csv(merged_file_path, index=False)
     
     print(f'Merged file saved: {merged_file_path}')
+
+    return merged_file_path
 
 # 사용 예시
 # 하나의 디렉토리를 입력받습니다

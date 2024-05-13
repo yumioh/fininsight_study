@@ -1,6 +1,6 @@
 import pandas as pd
 import re
-from file_manager import merge_csv_files_in_directory
+from file_manager import merge_csv_in_dir
 from datetime import datetime
 
 """
@@ -29,15 +29,16 @@ def remove_special(text):
 
 
 #파일명 중복을 피하기 위함
-data_year = '2020_'
+data_year = '2020'
 timestamp = data_year + datetime.now().strftime("%m%d_%H%M")
+subject = "청년기본법"
 
-#2020년도별 파일 merge
+#년도/ 키워드별 파일 merge
 directory = './trendAnalysis/news_data/'
-#merge_csv_files_in_directory(directory, data_year)
+merged_file_path = merge_csv_in_dir(directory, data_year, subject)
 
 #merge한 파일 들고 오기 
-all_news_df = pd.read_csv("./trendAnalysis/news_data/merged_news_data_2020.csv")
+all_news_df = pd.read_csv(merged_file_path)
 # 결측지 제거 전 : 325870
 print("raw data :" , all_news_df.shape)
 #print(all_news_df.head())
@@ -76,7 +77,7 @@ print(content_df_copy.info())
 print("content_df_copy : ", content_df_copy.head())
 
 # 전처리한 데이터 파일로 저장
-filename = f'./trendAnalysis/news_data/processed_data_{timestamp}.csv'
+filename = f'./trendAnalysis/news_data/processed_data_{subject}_{data_year}.csv'
 content_df_copy[['date','content']].to_csv(filename, index=False, encoding='utf-8-sig')
 
 

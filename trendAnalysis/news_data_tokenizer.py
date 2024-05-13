@@ -17,7 +17,7 @@ from datetime import datetime
 """
 
 #불용어
-stop_words = ['지난해','지난','대통령','정치','장관','정책','한국','사업','정부','지원','종합','경제','코로나','올해',
+stop_words = ['지난해','지난','대통령','정치','장관','한국','사업','정부','지원','종합','경제','코로나','올해',
               '기업','지역','사업','시장','산업','한국','추진','관련','사회','국민','상황','가능','서울','필요','이번',
               '경우','대상','우리','총선','후보','실장','국회','공천','공약','국회의원','지역구','이번','여당','기업',
               '회의','선거','출마','보수','위원장','국내','행위','출시','이후','바이러스','기사','청와대','전년','우한',
@@ -30,7 +30,7 @@ stop_words = ['지난해','지난','대통령','정치','장관','정책','한�
               '효과','전국','영향','업무','우려','구축','기간','사태','지방','지급','수출','과정','행정','시행','수준','제공',
               '위원','은행','상승','피해','감소','지속','조치','문재인','생산','결정','주장','사건','과장','확진','환자',
               '분기','단지','사업자','선정','서울시','서울','최대','경기도','저희','사실','부분','나라','중요','이유','무엇',
-              '당시','다음','오전','내년']
+              '당시','다음','오전','내년','개월','']
 
 #불용어 처리 함수
 def remove_stopwords(tokens):
@@ -50,11 +50,13 @@ def noun_tagging(df) :
   return df.apply(lambda x: [mecab.nouns(word) for word in x]) 
 
 #파일명
-data_year = '2020_'
+data_year = '2020'
 timestamp = data_year + datetime.now().strftime("%m%d")
+subject = "청년"
 
 #2020년도 : 309300건
-news_df = pd.read_csv("./trendAnalysis/news_data/processed_data_2020_0510.csv")
+#news_df = pd.read_csv(f"./trendAnalysis/news_data/processed_data_{subject}_{data_year}.csv")
+news_df = pd.read_csv(f"./trendAnalysis/news_data/processed_data_2020_0510.csv")
 print("news_df :", news_df.shape)
 print(news_df.head())
 
@@ -64,24 +66,25 @@ print("\n 공백기준으로 본문 split :", news_df[:5])
 
 print("---------------------품사부착 및 파일 저장 (PoS Tagging)------------------------")
 
-# #명사 추출
-# news_df['noun_tokens'] = noun_tagging(news_df['split_content'])
-# print("\n 본문 명사만 추출 : ", news_df['noun_tokens'][:5])
-# print(news_df.shape)
-# print(news_df.head())
+#명사 추출
+news_df['noun_tokens'] = noun_tagging(news_df['split_content'])
+print("\n 본문 명사만 추출 : ", news_df['noun_tokens'][:5])
+print(news_df.shape)
+print(news_df.head())
 
-# # split 데이터를 각 하나의 리스트로 만들기 # split 데이터를 각 하나의 리스트로 만들기 
-# news_df['flatted_noun_tokens'] = news_df['noun_tokens'].apply(flatten_nested_list)
-# print('flatted_noun_tokens', news_df['flatted_noun_tokens'].head())
+# split 데이터를 각 하나의 리스트로 만들기 # split 데이터를 각 하나의 리스트로 만들기 
+news_df['flatted_noun_tokens'] = news_df['noun_tokens'].apply(flatten_nested_list)
+print('flatted_noun_tokens', news_df['flatted_noun_tokens'].head())
 
-# #mecab 실행시 메모리 부족 에러로 mecab 결과 파일로 저장
-# mecab_filename = f'./trendAnalysis/news_data/news_mecab_{timestamp}.csv'
-# news_df[['flatted_noun_tokens','date']].to_csv(mecab_filename, index=False, encoding='utf-8-sig')
+#mecab 실행시 메모리 부족 에러로 mecab 결과 파일로 저장
+mecab_filename = f'./trendAnalysis/news_data/news_mecab_{subject}_{data_year}.csv'
+
+news_df[['flatted_noun_tokens','date']].to_csv(mecab_filename, index=False, encoding='utf-8-sig')
 
 print("--------------------- 불용어 처리 및 최빈값 조회 ------------------------")
 
 #파일 데이터 프레임 형태로 불려오기 
-news_df = pd.read_csv("./trendAnalysis/news_data/news_mecab_2020_0510.csv")
+news_df = pd.read_csv("./trendAnalysis/news_data/news_mecab_청년_2020.csv")
 print(news_df.shape)
 print(news_df.head())
 
@@ -114,5 +117,5 @@ print(" ****불용어 처리 후 최빈어 조회**** : ", most_common_words)
 
 #총 데이터 개수 : 309300
 # news_df[['content','inp_date']].to_csv('./trendAnalysis/news_data/news_data_tokenized_2020.csv' , index=False, encoding='utf-8-sig')
-filename = f'./trendAnalysis/news_data/news_tokenized_{timestamp}.csv'
+filename = f'./trendAnalysis/news_data/news_tokenized_{subject}_{data_year}.csv'
 news_df[['date','content']].to_csv(filename, index=False, encoding='utf-8-sig')

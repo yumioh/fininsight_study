@@ -8,7 +8,7 @@ from gensim.models import LdaMulticore
 
 
 # LdaMulticore로 LDA 모델 학습
-def lda_modeling_and_visualization(corpus, dictionary, timestamp, keyword):
+def lda_modeling_and_visualization(corpus, dictionary, year, keyword):
     num_topics = 15  # 원하는 주제 수
     lda_model = LdaMulticore(corpus, num_topics=num_topics, id2word=dictionary, passes=10, workers=6, random_state=42)
 
@@ -21,7 +21,7 @@ def lda_modeling_and_visualization(corpus, dictionary, timestamp, keyword):
         print(f"Document {index}: {topic_dist}")
 
     # pyLDAvis로 시각화 준비 및 저장
-    filename = f'./trendAnalysis/news_data/visualization/{keyword}_lda_{timestamp}.html'
+    filename = f'./trendAnalysis/news_data/visualization/lda_{keyword}_{year}.html'
     vis = gensimvis.prepare(lda_model, corpus, dictionary)
     pyLDAvis.save_html(vis, filename)
 
@@ -40,8 +40,13 @@ def create_wordcloud(df, font_path, image_path, width=800, height=400, backgroun
         width=width, 
         height=height, 
         background_color=background_color, 
+        colormap = "Spectral_r",
         max_words=max_words
         ).generate_from_frequencies(word_freq)
+    
+    #print(plt.colormaps())
 
     # 워드 클라우드 이미지를 파일로 저장
     wordcloud.to_file(image_path)
+
+    #YlGnBu

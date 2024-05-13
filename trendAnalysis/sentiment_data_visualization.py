@@ -10,39 +10,47 @@ import matplotlib.dates as mdates
 """
 keyword = "youth_act_2020"
 
-#청년
-youth_sentiment_2020 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_청년_day_2020.csv")
-youth_sentiment_2023 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_청년_day_2023.csv")
-#버즈 데이터 확인
-youth_sentiment_2020['date'] = pd.to_datetime(youth_sentiment_2020['date'])
-youth_sentiment_2023['date'] = pd.to_datetime(youth_sentiment_2023['date'])
+# 특정 기간 설정
+start_date = pd.to_datetime("2020-08-03")
+end_date = pd.to_datetime("2020-12-31")
 
-#정책
-policy_sentiment_2020 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_정책_day_2020.csv")
-policy_sentiment_2023 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_정책_day_2023.csv")
-#버즈 데이터 확인
-policy_sentiment_2020['date'] = pd.to_datetime(policy_sentiment_2020['date'])
-policy_sentiment_2023['date'] = pd.to_datetime(policy_sentiment_2023['date'])
+# #청년
+# youth_sentiment_2020 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_청년_day_2020.csv")
+# youth_sentiment_2023 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_청년_day_2023.csv")
+# #버즈 데이터 확인
+# youth_sentiment_2020['date'] = pd.to_datetime(youth_sentiment_2020['date'])
+# youth_sentiment_2023['date'] = pd.to_datetime(youth_sentiment_2023['date'])
 
-#청년기본법 2020 ~ 2024
-youth_act_sentiment_2024 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_청년기본법_day_2024.csv")
-youth_act_sentiment_2024['date'] = pd.to_datetime(youth_act_sentiment_2024['date'])
+# #정책
+# policy_sentiment_2020 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_정책_day_2020.csv")
+# policy_sentiment_2023 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_정책_day_2023.csv")
+# #버즈 데이터 확인
+# policy_sentiment_2020['date'] = pd.to_datetime(policy_sentiment_2020['date'])
+# policy_sentiment_2023['date'] = pd.to_datetime(policy_sentiment_2023['date'])
+
+# #청년기본법 2020 ~ 2024
+# youth_act_sentiment_2024 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_청년기본법_day_2024.csv")
+# youth_act_sentiment_2024['date'] = pd.to_datetime(youth_act_sentiment_2024['date'])
 
 #청년기본법 2020
 youth_act_sentiment_2020 = pd.read_csv("./trendAnalysis/sentiment_data/sentiment_청년기본법_day_2020.csv")
 youth_act_sentiment_2020['date'] = pd.to_datetime(youth_act_sentiment_2020['date'])
 
+# 특정 기간에 해당하는 데이터 필터링
+filtered_data = youth_act_sentiment_2020[(youth_act_sentiment_2020['date'] >= start_date) & (youth_act_sentiment_2020['date'] <= end_date)]
 
-
-print("---------------------시계열 그래프 그리기(개별적)------------------------")
+print("---------------------시계열 그래프 그리기------------------------")
 
 save_path = f"./trendAnalysis/sentiment_data/visualization/{keyword}_sentiment_comparison.png"
 
 plt.figure(figsize=(10, 6))
-plt.bar(youth_act_sentiment_2020["date"], youth_act_sentiment_2020["score"], linestyle="-", color="blue", label="Sentiment Score")
+plt.bar(filtered_data["date"], filtered_data["score"], linestyle="-", color="#80BCBD", label="Sentiment Score")
 plt.xlabel("Date")
 plt.ylabel("Sentiment Score")
-plt.title("Sentiment Score 2020")
+# plt.title("Sentiment Score 2020")
+plt.title("Before Youth Act Implementation in 2020")
+plt.gca().xaxis.set_major_locator(mdates.MonthLocator())  # 모든 날짜 표시
+plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
 plt.axhline(0, color='black', linewidth=0.5)  # 중립적인 감정 기준선
 plt.grid()
 plt.xticks(rotation=45)
@@ -56,17 +64,17 @@ print("---------------------원형그래프------------------------")
 
 save_path = f"./trendAnalysis/sentiment_data/visualization/{keyword}_sentiment_pie.png"
 
-positive = len(youth_act_sentiment_2020[youth_act_sentiment_2024['score'] > 0])
-negative = len(youth_act_sentiment_2020[youth_act_sentiment_2024['score'] < 0])
-neutral = len(youth_act_sentiment_2020[youth_act_sentiment_2024['score'] == 0])
+positive = len(filtered_data[filtered_data['score'] > 0])
+negative = len(filtered_data[filtered_data['score'] < 0])
+neutral = len(filtered_data[filtered_data['score'] == 0])
 
 # 원형 그래프 그리기
 labels = ['Positive', 'Negative', 'Neutral']
 sizes = [positive, negative, neutral]
-colors = ['blue', 'red', 'orange']
+colors = ['#0079FF', '#FF204E', '#EEEEEE']
 explode = (0.1, 0.1, 0.1)  # 각 섹션의 분리 정도
 
-plt.figure(figsize=(8, 8))
+plt.figure(figsize=(6, 6))
 plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=90)
 plt.title("Youth Act Sentiment Distribution 2020'")
 plt.axis('equal')  # 원형 그래프를 원 모양으로 유지
