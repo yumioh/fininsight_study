@@ -11,11 +11,11 @@ directory = "./trendAnalysis/buzz_data/"
 keyword = '청년기본법'
 #synonyms = ['정책','주거','부동산','공공']
 synonyms = None
-interval = "day"
-date = "2020"
+interval = "month"
+date = "20_24"
 
 #API로 데이터 불려오기
-all_buzz_volume = fetch_buzz_volume("2020-01-01", "2020-12-31", interval, keyword , synonyms, None, ["사회", "경제", "생활/문화"], None)
+all_buzz_volume = fetch_buzz_volume("2020-01-01", "2024-12-31", interval, keyword , synonyms, None, ["사회", "정치","경제", "생활/문화"], None)
 
 #json 파일
 # with open(directory + file_name+ ".json", 'w', encoding='utf-8') as file:

@@ -14,9 +14,9 @@ directory = "./trendAnalysis/sentiment_data/"
 keyword = "청년기본법"
 interval = "day"
 model = "all" #전체 데이터에 대한 감정분석만 
-date = "2020"
+date = "2022"
 
-all_sentiment_score = fetch_sentiment_score("2020-01-01", "2020-12-31", keyword, interval, model, None, None, ["사회", "경제", "생활/문화"], None)
+all_sentiment_score = fetch_sentiment_score("2020-01-01", "2022-12-31", keyword, interval, model, None, None, ["사회", "경제", "정치", "생활/문화"], None)
 
 #json 파일
 # with open(directory + file_name+ ".json", 'w', encoding='utf-8') as file:

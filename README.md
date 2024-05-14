@@ -4,4 +4,4 @@
 
 #### - html_study : html 관련 스터디 및 실습 폴더
 
-#### - trendAnalysis : 트랜드 분석 프로젝트 
+#### - trendAnalysis : 청년기본법 키워드 분석 프로젝트 

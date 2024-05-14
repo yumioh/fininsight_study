@@ -25,17 +25,12 @@ def main():
     load_dotenv()
     path = os.getenv('font_path') 
 
-    #파일명 중복을 피하기 위함
-    #timestamp = data_year+"_"+ datetime.now().strftime("%m%d")
-
     #전처리된 뉴스 파일 가져오기 
     #2020년도 : 309300건
-    news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_2020_0510.csv")
+    #news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_2020_0510.csv")
+    news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_act_2020.csv")
     print(news_df.shape)
     print(news_df.head())
-
-    # memory erorr로 인하여 30만개 중 5만 개만 샘플링데이터 랜덤으로 샘플림하여 모델링
-    # news_df = news_df.sample(n=50000, random_state=42) 
 
     #데이터 프레임의 각 행을 리스트 형태로 변환
     #문자열로 저장된 리스트를 실제 리스트로 변환
@@ -43,13 +38,16 @@ def main():
 
     # 날짜를 datetime 형식으로 변환
     news_df['date'] = pd.to_datetime(news_df['date'])
+
+    #해당하는 키워드 행만 찾기
     
-    start_date = '2020-08-02'
-    end_date = '2020-12-31'
+    
+    start_date = '2020-01-01'
+    end_date = '2020-08-02'
 
     data_year = '2020'
-    subject = "employ_af"
-    keywords = ['취업','청년']
+    subject = "act_bf"
+    keywords = ['정책','청년']
      
     #이중에 하나라도 포함된 행 선택
     # news_df['tokens'].apply(lambda tokens: any(keyword in tokens for keyword in keywords))
@@ -69,11 +67,34 @@ def main():
     print("-----------------------------------------")
     print(filtered_df.head())
 
-    filtered_df.to_csv(f"./trendAnalysis/news_data/keyword_{subject}_{data_year}.csv", index=False, encoding="utf-8-sig")
-
+    #filtered_df.to_csv(f"./trendAnalysis/news_data/keyword_{subject}_{data_year}.csv", index=False, encoding="utf-8-sig")
+    
     #시각화를 위해 청년 키워드만 삭제
     #filtered_df['tokens'] = filtered_df['tokens'].apply(lambda tokens: remove_keywords(tokens, ['교육']))
     filtered_df.loc[:, 'tokens'] = filtered_df['tokens'].apply(lambda tokens: remove_keywords(tokens, keywords))
+
+    print("---------------------중복된 키워드 추출------------------------")
+    #시행 기간 나누기 
+    start_date_bf = '2020-01-01'
+    end_date_bf = '2020-08-02'
+    start_date_af = '2020-08-03'
+    end_date_af = '2020-12-31'
+    filtered_df_bf = filtered_df_bf[(filtered_df_bf['date'] >= start_date_bf) & (filtered_df_bf['date'] <= end_date_bf)]
+    fileter_df_af = fileter_df_af[(fileter_df_af['date'] >= start_date_af) & (fileter_df_af['date'] <= end_date_af)]
+
+    #두 공통 키워드 추출
+    common_keywords = filtered_df_bf.intersection(fileter_df_af)
+    print(common_keywords)
+
+    
+    # 공통 키워드 제거 함수
+    def remove_common_keywords(keyword_list):
+        return [keyword for keyword in keyword_list if keyword not in common_keywords]
+    
+    # 각 데이터 프레임의 키워드 열에서 공통 키워드 제거
+    df1['keywords'] = df1['keywords'].apply(remove_common_keywords)
+    df2['keywords'] = df2['keywords'].apply(remove_common_keywords)
+
 
     print("---------------------워드 클라우드------------------------")
 

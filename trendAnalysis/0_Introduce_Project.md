@@ -13,7 +13,7 @@
 <br/>
 
 - 기준 기간 : 2023.06 ~ 2023.12 (API가 2020년 부터 데이터를 제공)<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp; _=> 청년 기본법이 개정이 시행 전후 비교
+&emsp;&emsp;&emsp;&emsp;&emsp; _=> 청년 기본법의 개정이 시행 전후 비교
 <br/>
 
 - 사용 언어 : python
