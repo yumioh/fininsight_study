@@ -5,12 +5,53 @@ from gensim.models import TfidfModel
 from ast import literal_eval
 from dotenv import load_dotenv
 from datetime import datetime
+from collections import Counter
 from data_analysis_manager import lda_modeling_and_visualization, create_wordcloud
 
+
+#데이터 프레임에서 가장 빈도가 높은 키워드 추출
+def get_top_keywords(df, num_keywords=25):
+    all_tokens = sum(df['content'], [])
+    keyword_counts = Counter(all_tokens)
+    top_keywords = keyword_counts.most_common(num_keywords)
+    print("빈도 수가 높은 키워드 : ", top_keywords)
+    #_ 변수를 무시하고 싶을때 사용하는 표현
+    return set([keyword for keyword, _ in top_keywords])
+
+#두 데이터 프레임에서 각각의 상위 키워드 추출하고, 공통된 키워드 반환
+def find_common_keywords(df_first, df_second, num_keywords=25):
+    top_keywords_first = get_top_keywords(df_first, num_keywords)
+    top_keywords_second = get_top_keywords(df_second, num_keywords)
+    common_keywords = list(top_keywords_first & top_keywords_second)
+    print("공통된 키워드 추출 : ", common_keywords)
+    return common_keywords
 
 #제외할 키워드
 def remove_keywords(tokens, keywords):
     return [token for token in tokens if token not in keywords]
+
+# 필터링된 뉴스 데이터를 반환하는 함수
+def filter_news(df, start_date, end_date, keywords):
+    """
+    - start_date : 필터링 시작 날짜 (포맷: 'YYYY-MM-DD').
+    - end_date : 필터링 종료 날짜 (포맷: 'YYYY-MM-DD').
+    - keywords : 필터링할 키워드 리스트.
+    - all_keywords : 모든 키워드가 포함되어야 하는지 여부 (기본값 True)
+    """
+    # 날짜 형식 변환
+    condition_date = (df['date'] >= pd.Timestamp(start_date)) & (df['date'] <= pd.Timestamp(end_date))
+    
+    # 키워드 필터링 조건 설정
+    # if all_keywords:
+    #     # 모든 키워드를 포함하는 행만 선택
+    #     condition = df['content'].apply(lambda tokens: all(keyword in tokens for keyword in keywords))
+    # else:
+    #     # 주어진 키워드 중 하나라도 포함하는 행 선택
+    #     condition = df['content'].apply(lambda tokens: any(keyword in tokens for keyword in keywords))
+
+    condition = df['content'].apply(lambda tokens: set(keywords).issubset(tokens))
+ 
+    return df[condition_date & condition]
 
 def main():
     """
@@ -27,74 +68,51 @@ def main():
 
     #전처리된 뉴스 파일 가져오기 
     #2020년도 : 309300건
-    #news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_2020_0510.csv")
-    news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_act_2020.csv")
+    news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_2020_0510.csv", parse_dates=['date'])
+    #news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_act_2020.csv", parse_dates=['date'])
     print(news_df.shape)
     print(news_df.head())
 
     #데이터 프레임의 각 행을 리스트 형태로 변환
     #문자열로 저장된 리스트를 실제 리스트로 변환
-    news_df['tokens'] = news_df['content'].apply(literal_eval)
-
-    # 날짜를 datetime 형식으로 변환
-    news_df['date'] = pd.to_datetime(news_df['date'])
-
-    #해당하는 키워드 행만 찾기
+    news_df['content'] = news_df['content'].apply(literal_eval)
     
-    
-    start_date = '2020-01-01'
-    end_date = '2020-08-02'
-
+    #옵션값 넣기
+    keywords = ['청년','주택']
     data_year = '2020'
-    subject = "act_bf"
-    keywords = ['정책','청년']
-     
-    #이중에 하나라도 포함된 행 선택
-    # news_df['tokens'].apply(lambda tokens: any(keyword in tokens for keyword in keywords))
-    # 해당하는 모든 키워드 선택
-    # news_df['tokens'].apply(lambda tokens: all(keyword in tokens for keyword in keywords))
-    # 하나의 키워드
+    subject_pre = "house_pre"
+    subject_post = "house_post"
+
+    #시행 전 기간
+    start_date_pre = '2020-01-01'
+    end_date_pre = '2020-08-02'
+    #시행 후 기간
+    start_date_post = '2020-08-03'
+    end_date_post = '2020-12-31'
+        
     #news_df['tokens'].apply(lambda tokens: '청년' in tokens)
-   
-    # 특정 기간과 해당하는 키워드 행만 추출
-    filtered_df = news_df[
-        (news_df['date'] >= start_date) & 
-        (news_df['date'] <= end_date) & 
-        (news_df['tokens'].apply(lambda tokens: all(keyword in tokens for keyword in keywords)))
-    ]
+
+    # 특정 기간 동안 지정된 키워드 행만 찾기
+    filtered_df_first = filter_news(news_df, start_date_pre, end_date_pre, keywords)
+    filtered_df_second = filter_news(news_df, start_date_post, end_date_post, keywords)
+
     print("-----------------------------------------")   
-    print(f"특정 기간 동안 {subject}가 포함된 뉴스행 추출 : ", filtered_df.shape)
+    print(f"시행 전 기간 동안 {keywords}가 포함된 뉴스행 추출 : ", filtered_df_first.shape)
     print("-----------------------------------------")
-    print(filtered_df.head())
+    print(filtered_df_first.head())
 
-    #filtered_df.to_csv(f"./trendAnalysis/news_data/keyword_{subject}_{data_year}.csv", index=False, encoding="utf-8-sig")
-    
-    #시각화를 위해 청년 키워드만 삭제
-    #filtered_df['tokens'] = filtered_df['tokens'].apply(lambda tokens: remove_keywords(tokens, ['교육']))
-    filtered_df.loc[:, 'tokens'] = filtered_df['tokens'].apply(lambda tokens: remove_keywords(tokens, keywords))
+    print("-----------------------------------------")   
+    print(f"시행 후 기간 동안 {keywords}가 포함된 뉴스행 추출 : ", filtered_df_second.shape)
+    print("-----------------------------------------")
+    print(filtered_df_second.head())
 
-    print("---------------------중복된 키워드 추출------------------------")
-    #시행 기간 나누기 
-    start_date_bf = '2020-01-01'
-    end_date_bf = '2020-08-02'
-    start_date_af = '2020-08-03'
-    end_date_af = '2020-12-31'
-    filtered_df_bf = filtered_df_bf[(filtered_df_bf['date'] >= start_date_bf) & (filtered_df_bf['date'] <= end_date_bf)]
-    fileter_df_af = fileter_df_af[(fileter_df_af['date'] >= start_date_af) & (fileter_df_af['date'] <= end_date_af)]
+    # 공통 키워드 추출
+    common_keywords = find_common_keywords(filtered_df_first, filtered_df_second)
+    filtered_df_first.loc[:, 'content'] = filtered_df_first['content'].apply(remove_keywords, args=(common_keywords,))
+    print("시행전 : ", filtered_df_first.shape)
 
-    #두 공통 키워드 추출
-    common_keywords = filtered_df_bf.intersection(fileter_df_af)
-    print(common_keywords)
-
-    
-    # 공통 키워드 제거 함수
-    def remove_common_keywords(keyword_list):
-        return [keyword for keyword in keyword_list if keyword not in common_keywords]
-    
-    # 각 데이터 프레임의 키워드 열에서 공통 키워드 제거
-    df1['keywords'] = df1['keywords'].apply(remove_common_keywords)
-    df2['keywords'] = df2['keywords'].apply(remove_common_keywords)
-
+    filtered_df_second.loc[:, 'content'] = filtered_df_second['content'].apply(remove_keywords, args=(common_keywords,))
+    print("시행후 : ", filtered_df_second.shape)
 
     print("---------------------워드 클라우드------------------------")
 
@@ -105,10 +123,14 @@ def main():
     """
     # 나눔고딕 폰트 경로 (예시: Windows의 경우) 
     font_path = path + "NanumBarunGothic.ttf"
-    filename = f'./trendAnalysis/news_data/visualization/wordcloud_{subject}_{data_year}.png'
+    
+    # 시행 전 워드클라우드 생성
+    filename_pre = f'./trendAnalysis/news_data/visualization/wordcloud_{subject_pre}_{data_year}.png'
+    create_wordcloud(filtered_df_first, font_path, filename_pre)
 
-    # 워드 클라우드 생성 함수 호출
-    create_wordcloud(filtered_df, font_path, filename)
+    # 시행 후 워드 클라우드 생성
+    filename_post = f'./trendAnalysis/news_data/visualization/wordcloud_{subject_post}_{data_year}.png'
+    create_wordcloud(filtered_df_second, font_path, filename_post)
 
     """
     LDA 모델링 순서
@@ -120,22 +142,35 @@ def main():
     5. 중요단어 확인
     """
 
-    print("---------------------사전 생성------------------------")
+    print("---------------------시행 전 사전 생성------------------------")
 
     #딕셔너리 생성 
-    dictionary = Dictionary(filtered_df['tokens'])
+    dictionary = Dictionary(filtered_df_first['content'])
     print("idword : ", list(dictionary.items())[:10])
-
     #LDA 모델링을 위해 벡터화된 문서(코퍼스) 확인
-    corpus = [dictionary.doc2bow(tokens) for tokens in filtered_df['tokens']]
-
+    corpus = [dictionary.doc2bow(tokens) for tokens in filtered_df_first['content']]
     #tfidf로 벡터화 적용
     tfidf = TfidfModel(corpus)
     corpus_TFIDF = tfidf[corpus]
     
-    print("---------------------LDA 학습 시작------------------------")
+    print("---------------------시행 전 LDA 학습 시작------------------------")
     
-    lda_modeling_and_visualization(corpus_TFIDF, dictionary, data_year, subject)
+    lda_modeling_and_visualization(corpus_TFIDF, dictionary, data_year, subject_pre)
+
+    print("---------------------시행 후 사전 생성------------------------")
+
+    #딕셔너리 생성 
+    dictionary = Dictionary(filtered_df_second['content'])
+    print("idword : ", list(dictionary.items())[:10])
+    #LDA 모델링을 위해 벡터화된 문서(코퍼스) 확인
+    corpus = [dictionary.doc2bow(tokens) for tokens in filtered_df_second['content']]
+    #tfidf로 벡터화 적용
+    tfidf = TfidfModel(corpus)
+    corpus_TFIDF = tfidf[corpus]
+    
+    print("---------------------시행 후 LDA 학습 시작------------------------")
+    
+    lda_modeling_and_visualization(corpus_TFIDF, dictionary, data_year, subject_post)
 
 if __name__ == "__main__":
     main()

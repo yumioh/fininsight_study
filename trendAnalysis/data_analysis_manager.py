@@ -29,7 +29,7 @@ def lda_modeling_and_visualization(corpus, dictionary, year, keyword):
 #데이터프레임으로부터 워드 클라우드를 생성하는 함수
 def create_wordcloud(df, font_path, image_path, width=800, height=400, background_color='white', max_words=60):
     # 모든 토큰을 하나의 리스트로 합치기
-    all_tokens = [token for tokens in df['tokens'] for token in tokens]
+    all_tokens = [token for tokens in df['content'] for token in tokens]
 
     # 단어 빈도 계산
     word_freq = Counter(all_tokens)
@@ -40,7 +40,7 @@ def create_wordcloud(df, font_path, image_path, width=800, height=400, backgroun
         width=width, 
         height=height, 
         background_color=background_color, 
-        colormap = "Spectral_r",
+        colormap = "coolwarm",
         max_words=max_words
         ).generate_from_frequencies(word_freq)
     
@@ -50,3 +50,11 @@ def create_wordcloud(df, font_path, image_path, width=800, height=400, backgroun
     wordcloud.to_file(image_path)
 
     #YlGnBu
+    #Spectral_r
+    #PuOr_r
+    #YlGnBu_r
+    #coolwarm
+    #cool
+    #gnuplot_r
+    #terrain
+
