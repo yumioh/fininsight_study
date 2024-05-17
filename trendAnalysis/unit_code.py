@@ -1,33 +1,23 @@
 import pandas as pd
 
-# 예시 데이터프레임
-data = {
-    'tokens': [
-        ['방송인', '오정연', '고려', '대학교', '정책', '대학원', '최고위', '정책', '과정', '수료'],
-        ['해양수산부', '인사', '대변인', '윤현수', '해양', '산업', '정책', '류재형', '양수산', '과학기술'],
-        ['이종수', '보람', '그룹', '회장', '철홍', '채널', '사업', '국장', '우이', '밀레니엄', '힐튼'],
-        ['일본', '조선업', '공적', '자금', '지원', '한국', '정부', '조처', '부당', '보조금'],
-        ['조억', '원대', '제주', '도시', '공원', '민간', '특례', '사업', '협상', '대상자', '호반'],
-        ['신경', '정신', '의학', '학회', '성명', '발표', '신종', '코로나', '공포', '적대감', '공동체'],
-        ['생산', '소비', '설비', '투자가', '개월', '증가', '경기', '회복', '기대감', '신종']
-    ]
-}
-df = pd.DataFrame(data)
+#파일 합치기 
 
-# 불용어 리스트
-stop_words = ['방송인', '고려대학교', '대통령', '이종수', '정치', '장관', '정책', '올해', '지난해', '지난', '한국']
+csv_files = ['./trendAnalysis/news_data/processed_data_정책_2023.csv',
+             './trendAnalysis/news_data/processed_data_정책_2024.csv']  # CSV 파일 이름 리스트
+dataframes = []  # DataFrame들을 저장할 리스트
 
-# 불용어를 제거하는 함수
-def remove_stopwords(tokens):
-    """
-    불용어 리스트에 있는 단어를 토큰 리스트에서 제거합니다.
-    :param tokens: 문자열 토큰 리스트
-    :return: 불용어가 제거된 결과 리스트
-    """
-    return [token for token in tokens if token not in stop_words]
+dataframes = []
 
-# 각 행의 토큰 리스트에 불용어 제거 함수 적용
-df['filtered_tokens'] = df['tokens'].apply(remove_stopwords)
+for file in csv_files:
+    df = pd.read_csv(file)
+    dataframes.append(df)
 
-# 결과 출력
-print(df)
+combined_df = pd.concat(dataframes, ignore_index=True)
+
+# 결과 확인
+print(combined_df.head())
+
+# 결과를 새로운 CSV 파일로 저장
+combined_df.to_csv('./trendAnalysis/news_data/processed_data_정책_23_24.csv', index=False)
+
+print(combined_df.shape)

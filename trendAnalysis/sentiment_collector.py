@@ -6,7 +6,7 @@ from api_manager import fetch_sentiment_score
 감정분석 데이터 수집
 
 - 모델을 전체 뉴스 데이터에 대한 감정분석으로 진행(긍/부)
-- 감정분석 데이터는 굳이 merge할 필욘 없음ㄴ
+- 감정분석 데이터는 굳이 merge할 필욘 없음
 
 """
 

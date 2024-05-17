@@ -29,9 +29,9 @@ def remove_special(text):
 
 
 #파일명 중복을 피하기 위함
-data_year = '2020'
-timestamp = data_year + datetime.now().strftime("%m%d_%H%M")
-subject = "청년기본법"
+data_year = '2024'
+timestamp = data_year + datetime.now().strftime("%m%d")
+subject = "정책"
 
 #년도/ 키워드별 파일 merge
 directory = './trendAnalysis/news_data/'
