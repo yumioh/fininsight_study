@@ -40,7 +40,7 @@ def create_wordcloud(df, font_path, image_path, width=800, height=400, backgroun
         width=width, 
         height=height, 
         background_color=background_color, 
-        colormap = "coolwarm",
+        colormap = "YlGnBu",
         max_words=max_words
         ).generate_from_frequencies(word_freq)
     
