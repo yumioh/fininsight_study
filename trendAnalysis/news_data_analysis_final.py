@@ -4,12 +4,11 @@ from gensim.corpora.dictionary import Dictionary
 from gensim.models import TfidfModel
 from ast import literal_eval
 from dotenv import load_dotenv
-from datetime import datetime
 from collections import Counter
-from data_analysis_manager import lda_modeling_and_visualization, create_wordcloud
+from data_analysis_manager import lda_modeling_and_visualization, create_wordcloud, create_wordcloud2
 
 
-#데이터 프레임에서 가장 빈도가 높은 키워드 추출
+# 가장 빈도가 높은 키워드 추출
 def get_top_keywords(df, num_keywords=25):
     all_tokens = sum(df['content'], [])
     keyword_counts = Counter(all_tokens)
@@ -69,37 +68,43 @@ def main():
     #전처리된 뉴스 파일 가져오기 
     #2020년도 : 309300건
     #2023.01 ~ 2024.05.14 : 675542건 : news_tokenized_정책_23_24_total.csv
+
+    #개정전 : 2020/08/03 ~ 2020/12/31 (151일)
+    news_df_before = pd.read_csv("./trendAnalysis/news_data/news_tokenized_정책_2020_before.csv", parse_dates=['date'])
+    print("개정 전 : ", news_df_before.shape)
+    print("개정 전 : ", news_df_before.head())
+    
+    #개정후 : 2023/09/22 ~ 2023/12/31 (101일)
     #2023.06.24 ~ 23.12.20 : 232169건 : news_tokenized_정책_23_24_filter_1.csv
-    #개정전 : 2020/08/03 ~ 2020/12/31
-    #개정후 : 2023/09/22 ~ 2023/12/20
-    news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_act_2020.csv", parse_dates=['date'])
-    #news_df = pd.read_csv("./trendAnalysis/news_data/news_tokenized_act_2020.csv", parse_dates=['date'])
-    print(news_df.shape)
-    print(news_df.head())
+    news_df_after = pd.read_csv("./trendAnalysis/news_data/news_tokenized_정책_2324.csv", parse_dates=['date'])
+    print("개정 후 : ",  news_df_after.shape)
+    print("개정 후 : ", news_df_after.head())
 
     #데이터 프레임의 각 행을 리스트 형태로 변환
     #문자열로 저장된 리스트를 실제 리스트로 변환
-    news_df['content'] = news_df['content'].apply(literal_eval)
+    news_df_before['content'] = news_df_before['content'].apply(literal_eval)
+    news_df_after['content'] = news_df_after['content'].apply(literal_eval)
     
     #옵션값 넣기
     keywords = ['청년','정책']
-    data_year = '2020'
-    subject_pre = "act_pre_final"
-    subject_post = "act_post_final"
+    data_year = '2023'
+    subject_pre = "living_pre_final"
+    subject_post = "living_post_final"
 
-    #개정 날짜 기준으로 전후90일 기준(약 3개월) 
-    #시행 전 기간
-    start_date_pre = '2020-01-01'
-    end_date_pre = '2020-008-02'
-    #시행 후 기간
-    start_date_post = '2020-08-03'
-    end_date_post = '2020-12-31'
+    #개정 날짜 기준으로 전후 150일 기준(약 5개월) 
+    #개정 전 기간
+    start_date_pre = '2020-08-03'
+    end_date_pre = '2020-12-31'
+
+    #개정 후 기간
+    start_date_post = '2023-09-22'
+    end_date_post = '2024-02-20'
         
     #news_df['tokens'].apply(lambda tokens: '청년' in tokens)
 
     # 특정 기간 동안 지정된 키워드 행만 찾기
-    filtered_df_first = filter_news(news_df, start_date_pre, end_date_pre, keywords)
-    filtered_df_second = filter_news(news_df, start_date_post, end_date_post, keywords)
+    filtered_df_first = filter_news(news_df_before, start_date_pre, end_date_pre, keywords)
+    filtered_df_second = filter_news(news_df_after, start_date_post, end_date_post, keywords)
 
     print("-----------------------------------------")   
     print(f"시행 전 기간 동안 {keywords}가 포함된 뉴스행 추출 : ", filtered_df_first.shape)
@@ -135,7 +140,7 @@ def main():
 
     # 시행 후 워드 클라우드 생성
     filename_post = f'./trendAnalysis/news_data/visualization/wordcloud_{subject_post}_{data_year}.png'
-    create_wordcloud(filtered_df_second, font_path, filename_post)
+    create_wordcloud2(filtered_df_second, font_path, filename_post)
 
     """
     LDA 모델링 순서
@@ -149,33 +154,33 @@ def main():
 
     print("---------------------시행 전 사전 생성------------------------")
 
-    #딕셔너리 생성 
-    dictionary = Dictionary(filtered_df_first['content'])
-    print("idword : ", list(dictionary.items())[:10])
-    #LDA 모델링을 위해 벡터화된 문서(코퍼스) 확인
-    corpus = [dictionary.doc2bow(tokens) for tokens in filtered_df_first['content']]
-    #tfidf로 벡터화 적용
-    tfidf = TfidfModel(corpus)
-    corpus_TFIDF = tfidf[corpus]
+    # #딕셔너리 생성 
+    # dictionary = Dictionary(filtered_df_first['content'])
+    # print("idword : ", list(dictionary.items())[:10])
+    # #LDA 모델링을 위해 벡터화된 문서(코퍼스) 확인
+    # corpus = [dictionary.doc2bow(tokens) for tokens in filtered_df_first['content']]
+    # #tfidf로 벡터화 적용
+    # tfidf = TfidfModel(corpus)
+    # corpus_TFIDF = tfidf[corpus]
     
-    print("---------------------시행 전 LDA 학습 시작------------------------")
+    # print("---------------------시행 전 LDA 학습 시작------------------------")
     
-    lda_modeling_and_visualization(corpus_TFIDF, dictionary, data_year, subject_pre)
+    # lda_modeling_and_visualization(corpus_TFIDF, dictionary, data_year, subject_pre)
 
-    print("---------------------시행 후 사전 생성------------------------")
+    # print("---------------------시행 후 사전 생성------------------------")
 
-    #딕셔너리 생성 
-    dictionary = Dictionary(filtered_df_second['content'])
-    print("idword : ", list(dictionary.items())[:10])
-    #LDA 모델링을 위해 벡터화된 문서(코퍼스) 확인
-    corpus = [dictionary.doc2bow(tokens) for tokens in filtered_df_second['content']]
-    #tfidf로 벡터화 적용
-    tfidf = TfidfModel(corpus)
-    corpus_TFIDF = tfidf[corpus]
+    # #딕셔너리 생성 
+    # dictionary = Dictionary(filtered_df_second['content'])
+    # print("idword : ", list(dictionary.items())[:10])
+    # #LDA 모델링을 위해 벡터화된 문서(코퍼스) 확인
+    # corpus = [dictionary.doc2bow(tokens) for tokens in filtered_df_second['content']]
+    # #tfidf로 벡터화 적용
+    # tfidf = TfidfModel(corpus)
+    # corpus_TFIDF = tfidf[corpus]
     
-    print("---------------------시행 후 LDA 학습 시작------------------------")
+    # print("---------------------시행 후 LDA 학습 시작------------------------")
     
-    lda_modeling_and_visualization(corpus_TFIDF, dictionary, data_year, subject_post)
+    # lda_modeling_and_visualization(corpus_TFIDF, dictionary, data_year, subject_post)
 
 if __name__ == "__main__":
     main()

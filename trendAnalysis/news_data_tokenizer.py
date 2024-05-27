@@ -35,7 +35,9 @@ stop_words = ['지난해','지난','대통령','정치','장관','한국','사�
               '인하','중심','신청','공공의','발전','의대','의사','병원','대학','참여','증원','기대','체계','전공의','도입',
               '국제','확보','등이','정도','섹션','추천','현장','관계','개최','행상','연구원','성과','방향','하락','역할','최고',
               '전문가','유지','학생','기록','핵심','전략','공개','목표','건설','참석','반영','만큼','행사','경영','요구','적용','검토',
-              '격월','구간','고려','모집','무작위','등록','광주','시대','오후','이하','얘기','전남']
+              '격월','구간','고려','모집','무작위','등록','광주','시대','오후','이하','얘기','전남','대한','민국','대한민국','프로그램',
+              '통합','특별','하나','기획','조억','재정','방역','업체','신종','자의','생활','주민','학교','기존','재난','단계','일부',
+              '확인','세대','우수','공사']
 
 #불용어 처리 함수
 def remove_stop_words(tokens):
@@ -49,67 +51,34 @@ def remove_stop_words(tokens):
 def flatten_list(nested_list):
     return [item for sublist in nested_list for item in sublist]
 
-#mecab을 이용하여 명사만 추출 함수
-# def noun_tagging(df) :
-#   mecab = Mecab('C:\mecab\share\mecab-ko-dic')
-#   return df.apply(lambda x: [mecab.nouns(word) for word in x]) 
-
 # Mecab을 이용하여 명사만 추출하는 함수, 리스트가 아닌 전체 텍스트를 한 번에 처리
 def extract_nouns(text, mecab):
     return mecab.nouns(text)
 
+#mecab을 이용하여 명사만 추출 함수
 def noun_tagging(df) :
   mecab = Mecab('C:\mecab\share\mecab-ko-dic')
   return df.apply(lambda x: [mecab.nouns(word) for word in x]) 
 
-#용량이 커서 청크 단위로 나눠서 처리
-def process_data(input_file, output_path):
-   
-   mecab = Mecab('C:\mecab\share\mecab-ko-dic') 
-   reader = pd.read_csv(input_file, chunksize=10000)
-
-   # 청크 단위로 데이터를 읽어와서 처리
-   for chunk in reader:
-    # 먼저 'content' 열을 기준으로 공백으로 단어 분리
-    chunk['split_content'] = chunk['content'].str.split()
-    print(chunk['split_content'][:10])
-
-    # 공백 기준으로 본문 내용 분리 후 바로 명사 추출
-    chunk['noun_tokens'] = chunk['split_content'].apply(lambda x: [mecab.nouns(word) for word in x])
-    print(chunk['noun_tokens'][:10])
-            
-    # 불용어 제거와 한 글자 제거
-    chunk['noun_tokens'] = chunk['noun_tokens'].apply(lambda tokens: remove_stop_words(tokens, stop_words))
-            
-    # 중첩된 리스트를 평탄화
-    chunk['flatted_nouns'] = chunk['noun_tokens'].apply(flatten_list)
-    print(chunk['flatted_nouns'][:10])
-            
-    # 결과 저장
-    chunk.to_csv(output_path, mode='a', index=False, columns=['flatted_nouns', 'date'])
-
 #파일명
-data_year = '2024'
+data_year = '2324'
 timestamp = data_year + datetime.now().strftime("%m%d")
 subject = "정책"
 
 #2020년도 : 309300건
 #2023년도 : 481284건
 #2024년도 : 194258건
+#2023/9/22 ~ 2023/02/28 : 326157건
 # news_df = pd.read_csv(f"./trendAnalysis/news_data/processed_data_{subject}_{data_year}.csv")
 # # news_df = pd.read_csv(f"./trendAnalysis/news_data/processed_data_정책_2024.csv")
 # print("news_df :", news_df.shape)
 # print(news_df.head())
 
-#공백기준으로 본문 내용 split
+# #공백기준으로 본문 내용 split
 # news_df['split_content'] = news_df['content'].str.split() 
 # print("\n 공백기준으로 본문 split :", news_df[:5])
 
-print("---------------------품사부착 및 파일 저장 (PoS Tagging)------------------------")
-
-# input_file = "./trendAnalysis/news_data/processed_data_정책_2023.csv"
-# output_file_path = f'./trendAnalysis/news_data/news_mecab_{subject}_{data_year}.csv'
-#process_data(input_file, output_file_path)
+# print("---------------------품사부착 및 파일 저장 (PoS Tagging)------------------------")
 
 # #공백기준으로 본문 내용 split
 # news_df['split_content'] = news_df['content'].str.split() 
@@ -130,17 +99,17 @@ print("---------------------품사부착 및 파일 저장 (PoS Tagging)--------
 # news_df['flatted_nouns'] = news_df['noun_tokens'].apply(flatten_list)
 # print('flatted_nouns', news_df['flatted_nouns'].head())
 
-# #mecab 실행시 메모리 부족 에러로 mecab 결과 파일로 저장
-# mecab_filename = f'./trendAnalysis/news_data/news_mecab_{subject}_{data_year}.csv'
+# # #mecab 실행시 메모리 부족 에러로 mecab 결과 파일로 저장
+# mecab_file_name = f'./trendAnalysis/news_data/news_mecab_{subject}_{data_year}.csv'
 
-# news_df[['date','flatted_nouns']].to_csv(mecab_filename, index=False, encoding='utf-8-sig')
+# news_df[['date','flatted_nouns']].to_csv(mecab_file_name, index=False, encoding='utf-8-sig')
 # print(news_df.head())
 # print(news_df.shape)
 
 print("--------------------- 불용어 처리 및 최빈값 조회 ------------------------")
 
-#파일 데이터 프레임 형태로 불려오기 ㄴ
-news_df = pd.read_csv("./trendAnalysis/news_data/news_mecab_정책_2024.csv")
+#파일 데이터 프레임 형태로 불려오기
+news_df = pd.read_csv("./trendAnalysis/news_data/news_mecab_정책_2324.csv")
 print(news_df.shape)
 print(news_df.head())
 
