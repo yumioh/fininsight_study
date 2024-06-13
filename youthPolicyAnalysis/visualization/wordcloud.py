@@ -3,9 +3,10 @@ from wordcloud import WordCloud
 
 
 #데이터프레임으로부터 워드 클라우드를 생성하는 함수
-def create_wordcloud(df, font_path, image_path, width=800, height=400, background_color='white', max_words=60):
+def create_wordcloud(tokens_column, font_path, image_path, width=800, height=400, background_color='white', max_words=60):
     # 모든 토큰을 하나의 리스트로 합치기
-    all_tokens = [token for tokens in df['content'] for token in tokens]
+    #all_tokens = [token for tokens in df['content'] for token in tokens]
+    all_tokens = [token for tokens in tokens_column for token in eval(tokens)]
 
     # 단어 빈도 계산
     word_freq = Counter(all_tokens)
@@ -26,9 +27,10 @@ def create_wordcloud(df, font_path, image_path, width=800, height=400, backgroun
     wordcloud.to_file(image_path)
 
 
-def create_wordcloud2(df, font_path, image_path, width=800, height=400, background_color='white', max_words=60):
+def create_wordcloud2(tokens_column, font_path, image_path, width=800, height=400, background_color='white', max_words=60):
     # 모든 토큰을 하나의 리스트로 합치기
-    all_tokens = [token for tokens in df['content'] for token in tokens]
+    #all_tokens = [token for tokens in df['content'] for token in tokens]
+    all_tokens = [token for tokens in tokens_column for token in eval(tokens)]
 
     # 단어 빈도 계산
     word_freq = Counter(all_tokens)
