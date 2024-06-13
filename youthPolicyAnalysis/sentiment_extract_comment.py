@@ -26,7 +26,7 @@ rc('font', family=font_name)
 predicted_comments = pd.read_csv("./youthPolicyAnalysis/data/predicted_comments_2020.csv")
 print("predicted comments : ", predicted_comments.shape)
 
-#분석할 컬럼만 추출
+#분석할 컬럼만 추출 
 comments_df = predicted_comments.loc[:, ["date", "contents","predicted_emotion"]]
 
 #날짜 형식 변환
