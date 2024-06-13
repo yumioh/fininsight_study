@@ -5,9 +5,11 @@
 *.xls
 *.env
 *.json
+*.png
 
 
 #무시할 폴더명
 buzz_data/
 news_data/
 sentiment_data/
+data/
