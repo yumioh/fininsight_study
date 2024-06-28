@@ -1,10 +1,10 @@
-# 키워드로 보는 2020년 vs 2023년 : 청년기본법의 변화와 정책 영향 분석 <br/>
+![image](https://github.com/yumioh/fininsight_study/assets/38059057/a336a045-4731-42a2-91a2-b5a94114655a)# 키워드로 보는 2020년 vs 2023년 : 청년기본법의 변화와 정책 영향 분석 <br/>
 <br/>
 
  ## “청년기본법 시행과 개정 변화를 키워드로 알아보자” 
 
 
-<img src="https://github.com/yumioh/data_analysis/assets/38059057/95a7392f-8639-42a3-bf69-bdf0164a8c36" width=60%/>
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/95a7392f-8639-42a3-bf69-bdf0164a8c36" width=70%/>
 
 <p>
 
@@ -46,7 +46,7 @@
 - 워드 클라우드를 이용한 시각화로 결과를 도출
 - 정책 관련 데이터에서 '청년'과 관련된 항목을 추출했을 때, 주로 '일자리', '주택', '교육' ,’고용’ 등의 키워드가 나타남. 
 <p>
- <img src="https://github.com/yumioh/data_analysis/assets/38059057/3db1fa70-d832-4708-9f06-320ddc4a3574" width=70%/>
+ <img src="https://github.com/yumioh/data_analysis/assets/38059057/3db1fa70-d832-4708-9f06-320ddc4a3574" width=60%/>
 
 </p>
 
@@ -143,10 +143,10 @@ predictions = predict(new_dataset, model)
 
 
 - ### 개정전 키워드
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/8e167e39-70ea-41ec-9b1d-56d11c17054e" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/8e167e39-70ea-41ec-9b1d-56d11c17054e" width=60%>
 
 - ### 개정 후 키워드
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/889ff0b3-f517-483c-915b-707879368544" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/889ff0b3-f517-483c-915b-707879368544" width=60%>
 <br/>
 
 > **청년 정책은 개정 전과 후 모두 일자리 창출과 주거 문제에 중점을 두고 있습니다. 개정 전에는 지원금과 자금 제공을 통한 경제 활성화에 초점을 맞춘 반면, 개정 후에는 출산, 건강, 가족과 같은 사회적 문제와 고금리 영향으로 금리, 대출을 통한 금융 부담 경감에 더 많은 주목을 하고 있습니다.**
@@ -164,11 +164,11 @@ predictions = predict(new_dataset, model)
 
 - ### 개정전 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5cb710ca-6aaf-498c-8c36-5cb160598104" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5cb710ca-6aaf-498c-8c36-5cb160598104" width=60%>
 
 - ### 개정 후 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5568d62d-b6d4-40b0-93bb-014b41f75fb2" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5568d62d-b6d4-40b0-93bb-014b41f75fb2" width=60%>
 <br/>
 
   > **개정 전과 후 모두 인력 확보 및 전문성 강화에 중점을 두고 있다는 점이 드러납니다. 개정 전에는 코로나19 팬데믹의 영향으로 디지털 전환과 청년 일자리 창출에 초점을 맞춘 반면, 개정 후에는 인구 소멸, 세대와 같은 키워드가 주로 있는데, 이는 지방 인구 소멸 문제가 심각해지면서 청년 정책이 이와 같은 사회적 문제를 반영하고 있음을 보여줍니다.**
@@ -186,11 +186,11 @@ predictions = predict(new_dataset, model)
 
 - ### 개정전 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/946b9ee5-d52c-4e90-bb66-4404c78037f8" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/946b9ee5-d52c-4e90-bb66-4404c78037f8" width=60%>
 
 - ### 개정 후 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/485d120f-e3c7-4199-8bf1-206ed8a8647b" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/485d120f-e3c7-4199-8bf1-206ed8a8647b" width=60%>
 <br/>
 
   > **공통적으로 인구 문제와 도시 인프라, 환경 개선에 중점을 두고 있습니다. 개정 전에는 뉴딜 정책의 일환으로 부동산과 재건축 등에 관한 사업이 활발해졌고, 개정 후에는 인구 감소와 관련된 사회적 이슈를 해결하려는 정책이 많이 보입니다.**
@@ -209,12 +209,14 @@ predictions = predict(new_dataset, model)
 
 - ### 개정전 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/010ed256-18ee-45e0-b07b-953ee7333c09" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/010ed256-18ee-45e0-b07b-953ee7333c09" width=60%>
 
 - ### 개정 후 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/8faf9f1e-b4b1-454e-a609-9a7f5b2c245c" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/8faf9f1e-b4b1-454e-a609-9a7f5b2c245c" width=60%>
 <br/>
+
+  > **개정 전후 모두 '소득'과 '안정' 키워드를 통해 청년들의 경제적 안정을 우선시 되면서, 전문 인재 양성에 중점을 둔 교육 정책이 강조되었습니다. 주를 이루었고,  코로나19 팬데믹 영향으로 개정 전에는 주로 온라인 교육이 진행되었으며, 개정 후에는 글로벌 역량 강화와 청년들의 정신 건강 증진을 위한 다양한 지원책이 도입된 것으로 보입니다.**
 
  ----------------------------------
 ## 2020년도 청년기본법 개정 전 VS 2023년도 청년기본법 개정 후 댓글 비교 분석
@@ -236,22 +238,98 @@ predictions = predict(new_dataset, model)
   
   - ### 개정전 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5746f2e7-31d6-442b-b1ba-e58316643704" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5746f2e7-31d6-442b-b1ba-e58316643704" width=60%>
 
 - ### 개정 후 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/88dce520-a23f-499a-8ac4-c7c98b945f23" width=70%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/88dce520-a23f-499a-8ac4-c7c98b945f23" width=60%>
 <br/>
 
  > **개정 전에는 일자리 창출 정책의 실효성, 집값 상승, 공무원 수 증가에 따른 세금 부담, 코로나19 재난지원금의 효과성 등에 대한 불만이 많았습니다. 개정 후에는 국민연금의 운영과 지속 가능성, 민생 정책의 부족, 노인 인구 증가와 일자리 정책, 낮은 금리에 대한 불만, 국회의원 연봉과 취약 계층 지원 축소, 저출산율 정책의 실패 등에 대한 비판이 주를 이루었습니다.**
 <br/>
 
 ## 2. **청년 & 정책에 해당하는 감정 분석**
+원그래프는 중립을 제외한 비율임
 
+- 개정 전 댓글 수 및 비율
 
+| 구분     | 총개수   | 비율  |
+|---------|--------|----------|
+| 부정  | 61,528건 |  76% |
+| 중립  | 14,747건 |  18% |
+| 긍정  | 4,191건 |  5% |
 
+ <img src="https://github.com/yumioh/data_analysis/assets/38059057/c9665e05-236d-4ce8-b0f2-8b75a5342492" width=40%>
+ <br/>
+ <br/>
+  
+- 개정 후 댓글 수 및 비율
+  
+| 구분     | 총개수   | 비율  |
+|---------|--------|----------|
+| 부정  | 88,507건 |  78% |
+| 중립  | 19,999건 |  18% |
+| 긍정  | 5,180건 |  5% |
 
-  > **개정 전후 모두 '소득'과 '안정' 키워드를 통해 청년들의 경제적 안정을 우선시 되면서, 전문 인재 양성에 중점을 둔 교육 정책이 강조되었습니다. 주를 이루었고,  코로나19 팬데믹 영향으로 개정 전에는 주로 온라인 교육이 진행되었으며, 개정 후에는 글로벌 역량 강화와 청년들의 정신 건강 증진을 위한 다양한 지원책이 도입된 것으로 보입니다.**
+ <img src="https://github.com/yumioh/data_analysis/assets/38059057/61e0dc1a-2282-435e-9d79-e3881dd14971" width=40%>
+ <br/>
+ <br/>
+ 
+ > **개정 전후의 댓글 긍정/부정 비율는 큰 차이가 없었습니다. 중립적인 댓글을 제외하면, 부정적인 댓글 비율이 압도적으로 많은 것으로 나타났습니다.**
+
+## 3. **댓글 키워드 분석을 위한 동사 추출 및 비교**
+
+### 긍정적인 댓글인 경우
+  
+- ### 개정전 키워드
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/74c67980-d800-4f46-93a0-d546d0b87b17" width=60%>
+
+<br/>
+   
+- ### 개정후 키워드
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/5d0babef-8905-4b06-b909-401e59699cd1" width=60%>
+
+  > **개정 전,  **_"합니다"라는 표현은 응원, 감사, 가능성, 동감 등의 긍정적인 의견_** 을 나타내는 데 주로 사용되었습니다. "감사합니다"라는 표현은 특정 인물이나 단체의 노고에 대해 감사를 표하는 경우가 많았습니다. **_"바랍니다"라는 표현은 정책이 국민에게 더 나은 방향으로 개선되기를 희망하는 의견_** 을 담고 있었습니다. "힘내세요"라는 표현은 코로나19 기간 동안 의료 종사자들의 노고를 격려하고 응원하는 내용을 담고 있었습니다. 개정 후, "주세요"라는 표현은 좋은 정책을 만들어 달라는 요구를 나타내는 데 주로 사용되었습니다. **_"하게"라는 표현은 응원의 메시지나 정책을 응원한다는 메시지를 담고 있었습니다._** "갑니다"라는 표현은 주로 "웃고 갑니다"와 같은 긍정적이고 유쾌한 반응을 나타내는 데 사용되었습니다. "하세요"와 "하겠습니다"라는 표현은 **_특정 정치인이나 정책에 대한 지지와 응원의 뜻을 담고 있었습니다._**
+
+### 부정적인 댓글인 경우
+
+- ### 개정전 키워드
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/d88e1df0-0299-4b21-8f2f-e21d4175f4e9" width=60%>
+
+<br/>
+   
+- ### 개정후 키워드
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/f1cc3b7e-84bb-464e-a6c6-743f8a6c2b00" width=60%>
+
+> **_개정 전, "하는", "해서", "하면", "하고"라는 단어들이 많이 발견되었습니다. 이는 정부의 일이 마음에 들지 않는다거나 정책을 비판하는 내용_** 을 주로 나타내었습니다. 개정 후, "더불어"라는 표현은 특정 정당을 언급하며 비판하는 경우가 많았습니다. "모르는"이라는 표현은 **_정부가 현재 상황을 제대로 이해하지 못한다는 의견을 담고 있었습니다._** "한다고", "해야지"라는 표현은 문제 해결의 필요성을 강조하는 의견이 다수였습니다. 마지막으로, "봐라"라는 표현은 비꼬는 말투로 비판을 나타내는 경우가 많았습니다.
+
+<br/>
+
+## 4. **댓글 키워드 분석을 위한 형용사 추출 및 비교**
+
+### 긍정적인 댓글인 경우
+  
+- ### 개정전 키워드
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/47205d08-785b-417d-9963-4eb7a988fd1a" width=60%>
+
+<br/>
+   
+- ### 개정후 키워드
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/d913d21c-4298-48de-8dd6-367d36a555aa" width=60%>
+
+> 개정 전 댓글에서 형용사들은 주로 긍정적인 맥락에서 사용되었습니다. 예를 들어, "이런"은 "이런 분들이 훌륭하다", "있는"은 "의미있는 일이다", **_"좋은"은 "좋은 기사 감사합니다", "많은"은 "많은 사람들에게 도움이 되었으면 좋겠다"와 같이 긍정적인 사람, 행동, 콘텐츠, 영향을 언급할 때 사용_** 되었습니다. 개정 후 댓글에서는 형용사들이 기대감이나 비꼬는 맥락에서 많이 사용되었습니다. "기대합니다"는 긍정적인 기대감을 나타냈습니다. 반면, "그런, 없고"는 "그런 말은 필요 없고, 행동으로 보여주세요"와 같이 비꼬는 맥락에서 사용되었습니다. **_"멋지다"는 "그 사람 정말 멋지다"와 같이 응원과 칭찬을 표현_** 할 때 사용되었습니다. 이 분석을 통해 **_개정 전 댓글은 주로 긍정적인 맥락에서 형용사가 사용_** 된 반면, 개정 후 댓글은 기대감이나 비꼬는 맥락에서 형용사가 사용되었음을 알 수 있습니다.
+
+### 부정적인 댓글인 경우
+  
+- ### 개정전 키워드
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/e6fd16f6-c00a-4aa9-a3cb-4ca095c1693d" width=60%>
+
+<br/>
+   
+- ### 개정후 키워드
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/83218268-b905-4a2f-abce-1f352dfa29e6" width=60%>
+
+> 개정 전 댓글에서는 "없는","같은"은 해결되지 않거나 반복적인 문제를 언급했습니다. "이런"은 "이런 일이 발생하다니", "있는"은 **_"부정적인 상황과 문제를 강조_** 했습니다. "없다"는 "해결책이 없다"처럼 부재를 표현했습니다. "아니라"는 "이건 문제가 아니라"처럼 사실을 부정할 때 사용되었습니다. 개정 후 댓글에서는 "아니냐"가 "이것도 문제가 아니냐"처럼 문제 제기를, "있나"가 "이게 제대로 작동하긴 하나"처럼 의문을 제기했습니다. "아님"은 "사실이 아님", "아니면"은 부정과 대안을 나타냈습니다. **_"미친"은 강한 부정을, "있네"는 "문제가 있네"처럼 문제를, "없어"는 "답이 없어"처럼 부재를 직설적으로 표현_** 했습니다.
  
  ----------------------------------
 지금까지 청년 기본법의 개정 전후 키워드 비교 분석을 해보았습니다. 이제 이러한 분석 결과를 바탕으로, 법안의 개정이 청년 정책에 미친 영향을 알아 보겠습니다.
