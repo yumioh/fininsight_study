@@ -4,4 +4,4 @@
 
 #### - html_study : html 관련 스터디 및 실습
 
-#### - youthPolicyAnalysis : 키워드 분석으로 보는 청년기본법 개정 전/후 청년 정책의 변화 
+#### - youthPolicyAnalysis : 2020년 vs 2023년 : 청년기본법의 변화와 정책 영향 분석 리포트 작성
