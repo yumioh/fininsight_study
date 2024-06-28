@@ -4,7 +4,7 @@
  ## “청년기본법 시행과 개정 변화를 키워드로 알아보자” 
 
 
-<img src="https://github.com/yumioh/data_analysis/assets/38059057/95a7392f-8639-42a3-bf69-bdf0164a8c36" width=80%/>
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/95a7392f-8639-42a3-bf69-bdf0164a8c36" width=60%/>
 
 <p>
 
@@ -46,7 +46,7 @@
 - 워드 클라우드를 이용한 시각화로 결과를 도출
 - 정책 관련 데이터에서 '청년'과 관련된 항목을 추출했을 때, 주로 '일자리', '주택', '교육' ,’고용’ 등의 키워드가 나타남. 
 <p>
- <img src="https://github.com/yumioh/data_analysis/assets/38059057/3db1fa70-d832-4708-9f06-320ddc4a3574" width=80%/>
+ <img src="https://github.com/yumioh/data_analysis/assets/38059057/3db1fa70-d832-4708-9f06-320ddc4a3574" width=70%/>
 
 </p>
 
@@ -55,7 +55,7 @@
  - 인사이트 도출 : 워드 클라우드 분석 결과를 바탕으로 정책의 주된 이유, 문제점 파악 등
 
 
-## 1. KcBERT를 활용한 청년기본법의 댓글 감정 분석 과정
+## 2. KcBERT를 활용한 청년기본법의 댓글 감정 분석 과정
 - KcBERT란? 한국어 문자 처리를 위해 사전 훈련된 언어 모델입니다. 온라인 뉴스 댓글과 대댓글을 수집하여 토크나이저와 BERT 모델을 처음부터 학습한 Pretrained BERT 모델입니다.
   
 <br/>
@@ -96,8 +96,7 @@ trainer = Trainer(
 ```
 
 **_4.감정 예측 :  학습된 모델을 사용하여 댓글 데이터 감정 예측_**
-
-```pyhon
+```python
 def predict(dataset, model):
     predictions = []
     for item in dataset:
@@ -113,7 +112,6 @@ def predict(dataset, model):
 predictions = predict(new_dataset, model)
 
 ``` 
-
 
 ----------------------------------
 ‘정책’ 관련 데이터에서 '청년'과 관련된 항목을 추출한 결과, 주로 '일자리(고용)', '주택', '교육' 등의 키워드가 나타났습니다. 그렇다면 이 키워드들을 기준으로 정책 변화를 분석해 보겠습니다.
@@ -143,17 +141,17 @@ predictions = predict(new_dataset, model)
 | 개정 전  | 7,272건 | 뉴딜, 채용, 온라인, 임대, 창출, 공간, 지원금   |
 | 개정 후  | 21,222건 | 대출, 세대, 농업, 수도, 변화, 부담             |
 
-<br/>
 
 - ### 개정전 키워드
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/8e167e39-70ea-41ec-9b1d-56d11c17054e" width=80%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/8e167e39-70ea-41ec-9b1d-56d11c17054e" width=70%>
 
 - ### 개정 후 키워드
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/889ff0b3-f517-483c-915b-707879368544" width=80%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/889ff0b3-f517-483c-915b-707879368544" width=70%>
 <br/>
 
 > **청년 정책은 개정 전과 후 모두 일자리 창출과 주거 문제에 중점을 두고 있습니다. 개정 전에는 지원금과 자금 제공을 통한 경제 활성화에 초점을 맞춘 반면, 개정 후에는 출산, 건강, 가족과 같은 사회적 문제와 고금리 영향으로 금리, 대출을 통한 금융 부담 경감에 더 많은 주목을 하고 있습니다.**
 
+<br/>
 
 ## 2. **청년 & 일자리 (취업, 고용)**
 
@@ -164,19 +162,18 @@ predictions = predict(new_dataset, model)
 | 개정 전  | 3,018건 | 뉴딜, 채용, 공간, 소득, 중소기업, 스마트, 온라인금   |
 | 개정 후  | 5,534건 | 인재, 관광, 수도, 민생, 인력, 유치 ,소멸         |
 
-<br/>
-
 - ### 개정전 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5cb710ca-6aaf-498c-8c36-5cb160598104" width=80%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5cb710ca-6aaf-498c-8c36-5cb160598104" width=70%>
 
 - ### 개정 후 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5568d62d-b6d4-40b0-93bb-014b41f75fb2" width=80%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5568d62d-b6d4-40b0-93bb-014b41f75fb2" width=70%>
 <br/>
 
   > **개정 전과 후 모두 인력 확보 및 전문성 강화에 중점을 두고 있다는 점이 드러납니다. 개정 전에는 코로나19 팬데믹의 영향으로 디지털 전환과 청년 일자리 창출에 초점을 맞춘 반면, 개정 후에는 인구 소멸, 세대와 같은 키워드가 주로 있는데, 이는 지방 인구 소멸 문제가 심각해지면서 청년 정책이 이와 같은 사회적 문제를 반영하고 있음을 보여줍니다.**
 
+<br/>
 
 ## 3. **청년 & 주택**
 
@@ -187,18 +184,18 @@ predictions = predict(new_dataset, model)
 | 개정 전  | 1,612건 |  부지, 공간, 공사, 국토, 재건축,집값   |
 | 개정 후  | 3,939건 | 인구, 교육, 출산, 금리, 부담, 환경         |
 
-<br/>
-
 - ### 개정전 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/946b9ee5-d52c-4e90-bb66-4404c78037f8" width=80%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/946b9ee5-d52c-4e90-bb66-4404c78037f8" width=70%>
 
 - ### 개정 후 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/485d120f-e3c7-4199-8bf1-206ed8a8647b" width=80%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/485d120f-e3c7-4199-8bf1-206ed8a8647b" width=70%>
 <br/>
 
   > **공통적으로 인구 문제와 도시 인프라, 환경 개선에 중점을 두고 있습니다. 개정 전에는 뉴딜 정책의 일환으로 부동산과 재건축 등에 관한 사업이 활발해졌고, 개정 후에는 인구 감소와 관련된 사회적 이슈를 해결하려는 정책이 많이 보입니다.**
+
+<br/>
 
 ## 4. **청년 & 교육**
 
@@ -212,12 +209,47 @@ predictions = predict(new_dataset, model)
 
 - ### 개정전 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/010ed256-18ee-45e0-b07b-953ee7333c09" width=80%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/010ed256-18ee-45e0-b07b-953ee7333c09" width=70%>
 
 - ### 개정 후 키워드
   <p/>
-  <img src="https://github.com/yumioh/data_analysis/assets/38059057/8faf9f1e-b4b1-454e-a609-9a7f5b2c245c" width=80%>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/8faf9f1e-b4b1-454e-a609-9a7f5b2c245c" width=70%>
 <br/>
+
+ ----------------------------------
+## 2020년도 청년기본법 개정 전 VS 2023년도 청년기본법 개정 후 댓글 비교 분석
+💡 **URL로 직접 크롤링하여 데이터를 수집하는 데 상당한 시간이 소요 ⇒ 이전의 키워드 분석과 마찬가지로 기간을 설정하는 대신, 총 건수를 8000건 이내로 랜덤으로 수집**
+<br/>
+
+- ### 개정 전/후 댓글 수
+
+| 구분     | 개정전   | 개정 후     |
+|---------|--------|-----------------|
+| 댓글 수  | 109,342건 |  143,409건 |
+
+- ### 정책' 관련 댓글 데이터를 기반으로 개정 전/후 기간의 키워드를 분석
+💡 댓글 데이터는 주관적인 내용을 포함하고 있으며, 아래 워드클라우드를 비교 하면 해당 시기의 이슈가 되는 키워드만 추출되어 주제별로 키워드를 비교해도 큰 차이가 없음. 따라서 각 주제별로 세분화하여 비교하는 것은 무의미 ⇒ **_기존의 방식인 '정책, 교육, 일자리, 주택' 키워드로 나누기보다는, 정책 개정 전/후 기간을 기준으로만 키워드를 분석하는 방법으로 변경_**
+<br/>
+
+## 1. **개정 전/후 시점으로 청년 & 정책 댓글 키워드 분석**
+- **제외한 공통 키워드** : ‘아파트', '집값', '아이', '주택', '부동산', '결혼', '능력', '대출', '부모', '책임', '서민', '여자', '세금’
+  
+  - ### 개정전 키워드
+  <p/>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/5746f2e7-31d6-442b-b1ba-e58316643704" width=70%>
+
+- ### 개정 후 키워드
+  <p/>
+  <img src="https://github.com/yumioh/data_analysis/assets/38059057/88dce520-a23f-499a-8ac4-c7c98b945f23" width=70%>
+<br/>
+
+ > **개정 전에는 일자리 창출 정책의 실효성, 집값 상승, 공무원 수 증가에 따른 세금 부담, 코로나19 재난지원금의 효과성 등에 대한 불만이 많았습니다. 개정 후에는 국민연금의 운영과 지속 가능성, 민생 정책의 부족, 노인 인구 증가와 일자리 정책, 낮은 금리에 대한 불만, 국회의원 연봉과 취약 계층 지원 축소, 저출산율 정책의 실패 등에 대한 비판이 주를 이루었습니다.**
+<br/>
+
+## 2. **청년 & 정책에 해당하는 감정 분석**
+
+
+
 
   > **개정 전후 모두 '소득'과 '안정' 키워드를 통해 청년들의 경제적 안정을 우선시 되면서, 전문 인재 양성에 중점을 둔 교육 정책이 강조되었습니다. 주를 이루었고,  코로나19 팬데믹 영향으로 개정 전에는 주로 온라인 교육이 진행되었으며, 개정 후에는 글로벌 역량 강화와 청년들의 정신 건강 증진을 위한 다양한 지원책이 도입된 것으로 보입니다.**
  
