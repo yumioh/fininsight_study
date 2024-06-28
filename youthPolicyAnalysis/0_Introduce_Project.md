@@ -4,7 +4,7 @@
  ## “청년기본법 시행과 개정 변화를 키워드로 알아보자” 
 
 
-<img src="https://github.com/yumioh/data_analysis/assets/38059057/95a7392f-8639-42a3-bf69-bdf0164a8c36"/>
+<img src="https://github.com/yumioh/data_analysis/assets/38059057/95a7392f-8639-42a3-bf69-bdf0164a8c36" width=80%/>
 
 <p>
 
@@ -46,13 +46,73 @@
 - 워드 클라우드를 이용한 시각화로 결과를 도출
 - 정책 관련 데이터에서 '청년'과 관련된 항목을 추출했을 때, 주로 '일자리', '주택', '교육' ,’고용’ 등의 키워드가 나타남. 
 <p>
- <img src="https://github.com/yumioh/data_analysis/assets/38059057/3db1fa70-d832-4708-9f06-320ddc4a3574"/>
+ <img src="https://github.com/yumioh/data_analysis/assets/38059057/3db1fa70-d832-4708-9f06-320ddc4a3574" width=80%/>
 
 </p>
 
 **_4. 키워드 기반 내용 분석_** 
  - 트렌드 파악 : 분석 결과를 통해 청년 정책과 관련된 키워드 트렌드를 파악하고, 정책 변화 분석
  - 인사이트 도출 : 워드 클라우드 분석 결과를 바탕으로 정책의 주된 이유, 문제점 파악 등
+
+
+## 1. KcBERT를 활용한 청년기본법의 댓글 감정 분석 과정
+- KcBERT란? 한국어 문자 처리를 위해 사전 훈련된 언어 모델입니다. 온라인 뉴스 댓글과 대댓글을 수집하여 토크나이저와 BERT 모델을 처음부터 학습한 Pretrained BERT 모델입니다.
+  
+<br/>
+
+**_1. 데이터 수집 및 전처리_**
+   - 특수문자 처리
+   - 감정 레이블 숫자로 변환
+   - 놀람 감정 제외 (긍/부정으로 나누기 어려운 감정이기에 제외)
+     
+   <img src="https://github.com/yumioh/data_analysis/assets/38059057/535f5948-67f5-4bab-a49a-445ce96f33d5" width=50% />
+
+**_2. 데이터 셋 준비_**
+   - “한국어 단발성 대화 데이터셋” 이용
+
+**_3. 모델 학습 :  학습 데이터셋을 이용하여 KcBERT 학습_**
+```python
+model = BertForSequenceClassification.from_pretrained("beomi/kcbert-base", num_labels=len(label_map))
+
+training_args = TrainingArguments(
+    output_dir='./data/results',
+    num_train_epochs=3,
+    per_device_train_batch_size=32,
+    per_device_eval_batch_size=32,
+    warmup_steps=500,
+    weight_decay=0.01,
+    logging_dir='./data/logs',
+    logging_steps=50,
+    eval_strategy="epoch"
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=val_dataset
+)
+
+```
+
+**_4.감정 예측 :  학습된 모델을 사용하여 댓글 데이터 감정 예측_**
+
+```pyhon
+def predict(dataset, model):
+    predictions = []
+    for item in dataset:
+        with torch.no_grad():
+            input_ids = item['input_ids'].unsqueeze(0)
+            attention_mask = item['attention_mask'].unsqueeze(0)
+            outputs = model(input_ids, attention_mask=attention_mask)
+            logits = outputs.logits
+            predicted_class_id = torch.argmax(logits, dim=1).item()
+            predictions.append(predicted_class_id)
+    return predictions
+
+predictions = predict(new_dataset, model)
+
+``` 
 
 
 ----------------------------------
