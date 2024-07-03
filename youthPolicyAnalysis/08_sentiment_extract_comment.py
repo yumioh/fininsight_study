@@ -23,9 +23,9 @@ font_name = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font_name)
 
 # 예측한 댓글 감정 데이터 불러오기
-before_predicted_comments = pd.read_csv(f"./data/comment/predicted_comments_2020.csv")
+before_predicted_comments = pd.read_csv(f"./youthPolicyAnalysis/data/comment/predicted_comments_2020.csv")
 print("predicted comments : ", before_predicted_comments.shape)
-after_predicted_comments = pd.read_csv(f"./data/comment/predicted_comments_2324.csv")
+after_predicted_comments = pd.read_csv(f"./youthPolicyAnalysis/data/comment/predicted_comments_2324.csv")
 print("predicted comments : ", after_predicted_comments.shape)
 
 # 분석할 컬럼만 추출 
@@ -44,7 +44,7 @@ before_comments_df['date'] = pd.to_datetime(before_comments_df['date']).dt.strft
 print(before_comments_df.head())
 
 # 원 그래프 저장 위치
-pieGraph_path = f"./202405_YouthPolicyAanlysis/image/comment/pie_graph_2020.png"
+pieGraph_path = f"./youthPolicyAnalysis/img/pie_graph_2020.png"
 
 before_comments_df['emotion'] = before_comments_df['predicted_emotion'].apply(
     lambda x: '긍정' if x in positive_emotions else ('부정' if x in negative_emotions else '중립')
@@ -73,7 +73,7 @@ after_comments_df['date'] = pd.to_datetime(after_comments_df['date']).dt.strftim
 print(after_comments_df.head())
 
 # 원 그래프 저장 위치
-pieGraph_path = f"./youthPolicyAanlysis/img/pie_graph_2324.png"
+pieGraph_path = f"./youthPolicyAnalysis/img/pie_graph_2324.png"
 
 after_comments_df['emotion'] = after_comments_df['predicted_emotion'].apply(
     lambda x: '긍정' if x in positive_emotions else ('부정' if x in negative_emotions else '중립')
@@ -113,30 +113,30 @@ after_negative_comments_df = after_comments_df[after_comments_df['emotion'] == '
 print("개정 후 부정적인 댓글 추출", after_negative_comments_df.head())
 
 print("----------개정 전/후 댓글 동사 추출--------------")
-# # 한글자 제외
-# before_positive_comments_df["verbs"] = before_positive_comments_df["contents"].apply(lambda x: utils.filter_long_words(extract_pos_tag.okt_verb_tagging(x)))
-# after_positive_comments_df["verbs"] = after_positive_comments_df["contents"].apply(lambda x: utils.filter_long_words(extract_pos_tag.okt_verb_tagging(x)))
+# 한글자 제외
+before_positive_comments_df["verbs"] = before_positive_comments_df["contents"].apply(lambda x: utils.filter_long_words(extract_pos_tag.okt_verb_tagging(x)))
+after_positive_comments_df["verbs"] = after_positive_comments_df["contents"].apply(lambda x: utils.filter_long_words(extract_pos_tag.okt_verb_tagging(x)))
 
-# before_negative_comments_df["verbs"] = before_negative_comments_df["contents"].apply(lambda x: utils.filter_long_words(extract_pos_tag.okt_verb_tagging(x)))
-# after_negative_comments_df["verbs"] = after_negative_comments_df["contents"].apply(lambda x: utils.filter_long_words(extract_pos_tag.okt_verb_tagging(x)))
+before_negative_comments_df["verbs"] = before_negative_comments_df["contents"].apply(lambda x: utils.filter_long_words(extract_pos_tag.okt_verb_tagging(x)))
+after_negative_comments_df["verbs"] = after_negative_comments_df["contents"].apply(lambda x: utils.filter_long_words(extract_pos_tag.okt_verb_tagging(x)))
 
-# # 긍정 공통키워드 추출
-# common_keywords = utils.find_common_keywords(before_positive_comments_df, after_positive_comments_df, "verbs")
-# before_positive_comments_df['verbs'] = before_positive_comments_df['verbs'].apply(utils.remove_keywords, args=(common_keywords,))
-# after_positive_comments_df['verbs'] = after_positive_comments_df['verbs'].apply(utils.remove_keywords, args=(common_keywords,))
+# 긍정 공통키워드 추출
+common_keywords = utils.find_common_keywords(before_positive_comments_df, after_positive_comments_df, "verbs")
+before_positive_comments_df['verbs'] = before_positive_comments_df['verbs'].apply(utils.remove_keywords, args=(common_keywords,))
+after_positive_comments_df['verbs'] = after_positive_comments_df['verbs'].apply(utils.remove_keywords, args=(common_keywords,))
 
-# # 파일 저장
-# before_positive_comments_df[['date','verbs','emotion']].to_csv(f"./data/comment/verbs_tokenizer_positive_2020.csv", index=False, encoding='utf-8-sig')
-# after_positive_comments_df[['date','verbs','emotion']].to_csv(f"./data/comment/verbs_tokenizer_positive_2324.csv", index=False, encoding='utf-8-sig')
+# 파일 저장
+before_positive_comments_df[['date','verbs','emotion']].to_csv(f"./youthPolicyAnalysis/data/comment/verbs_tokenizer_positive_2020.csv", index=False, encoding='utf-8-sig')
+after_positive_comments_df[['date','verbs','emotion']].to_csv(f"./youthPolicyAnalysis/data/comment/verbs_tokenizer_positive_2324.csv", index=False, encoding='utf-8-sig')
 
-# # 부정 공통 키워드 추출
-# common_keywords = utils.find_common_keywords(before_negative_comments_df, after_negative_comments_df, "verbs")
-# before_negative_comments_df['verbs'] = before_negative_comments_df['verbs'].apply(utils.remove_keywords, args=(common_keywords,))
-# after_negative_comments_df['verbs'] = after_negative_comments_df['verbs'].apply(utils.remove_keywords, args=(common_keywords,))
+# 부정 공통 키워드 추출
+common_keywords = utils.find_common_keywords(before_negative_comments_df, after_negative_comments_df, "verbs")
+before_negative_comments_df['verbs'] = before_negative_comments_df['verbs'].apply(utils.remove_keywords, args=(common_keywords,))
+after_negative_comments_df['verbs'] = after_negative_comments_df['verbs'].apply(utils.remove_keywords, args=(common_keywords,))
 
-# # 파일 저장
-# before_negative_comments_df[['date','verbs','emotion']].to_csv(f"./data/comment/verbs_tokenizer_negative_2020.csv", index=False, encoding='utf-8-sig')
-# after_negative_comments_df[['date','verbs','emotion']].to_csv(f"./data/comment/verbs_tokenizer_negative_2324.csv", index=False, encoding='utf-8-sig')
+# 파일 저장
+before_negative_comments_df[['date','verbs','emotion']].to_csv(f"./youthPolicyAnalysis/data/comment/verbs_tokenizer_negative_2020.csv", index=False, encoding='utf-8-sig')
+after_negative_comments_df[['date','verbs','emotion']].to_csv(f"./youthPolicyAnalysis/data/comment/verbs_tokenizer_negative_2324.csv", index=False, encoding='utf-8-sig')
 
 print("----------개정 전/후 댓글 형용사 추출---------------")
 # 한글자 제외
@@ -152,8 +152,8 @@ before_positive_comments_df['adj'] = before_positive_comments_df['adj'].apply(ut
 after_positive_comments_df['adj'] = after_positive_comments_df['adj'].apply(utils.remove_keywords, args=(common_keywords,))
 
 # 파일 저장
-before_positive_comments_df[['date','adj','emotion']].to_csv(f"./data/comment/adj_tokenizer_positive_2020.csv", index=False, encoding='utf-8-sig')
-after_positive_comments_df[['date','adj','emotion']].to_csv(f"./data/comment/adj_tokenizer_positive_2324.csv", index=False, encoding='utf-8-sig')
+before_positive_comments_df[['date','adj','emotion']].to_csv(f"./youthPolicyAnalysis/data/comment/adj_tokenizer_positive_2020.csv", index=False, encoding='utf-8-sig')
+after_positive_comments_df[['date','adj','emotion']].to_csv(f"./youthPolicyAnalysis/data/comment/adj_tokenizer_positive_2324.csv", index=False, encoding='utf-8-sig')
 
 # 부정 형용사 공통키워드 추출
 common_keywords = utils.find_common_keywords(before_negative_comments_df, after_negative_comments_df, "adj")
@@ -161,5 +161,5 @@ before_negative_comments_df['adj'] = before_negative_comments_df['adj'].apply(ut
 after_negative_comments_df['adj'] = after_negative_comments_df['adj'].apply(utils.remove_keywords, args=(common_keywords,))
 
 # 파일 저장
-before_negative_comments_df[['date','adj','emotion']].to_csv(f"./data/comment/adj_tokenizer_negative_2020.csv", index=False, encoding='utf-8-sig')
-after_negative_comments_df[['date','adj','emotion']].to_csv(f"./data/comment/adj_tokenizer_negative_2324.csv", index=False, encoding='utf-8-sig')
+before_negative_comments_df[['date','adj','emotion']].to_csv(f"./youthPolicyAnalysis/data/comment/adj_tokenizer_negative_2020.csv", index=False, encoding='utf-8-sig')
+after_negative_comments_df[['date','adj','emotion']].to_csv(f"./youthPolicyAnalysis/data/comment/adj_tokenizer_negative_2324.csv", index=False, encoding='utf-8-sig')

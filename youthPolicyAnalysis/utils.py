@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import glob
 import re
+from collections import Counter
 
 """
 파일 관련 
