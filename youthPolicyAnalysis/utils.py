@@ -230,3 +230,66 @@ def merge_csv_files(file_list, output_file):
     # 결과를 새로운 CSV 파일로 저장
     combined_df.to_csv(output_file, index=False)
     print(f"Combined file saved as {output_file}")
+
+# 특수문자 제거 : 문자 전처리
+def preprocess_text(text):
+    text = text.lower()
+    text = re.sub(r"[^ㄱ-ㅎㅏ-ㅣ가-힣\s]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+#특수문자 제거 : 키워드 전처리시 사용
+def remove_special(text):
+    pattern_onlyKorean = re.compile('[^ ㄱ-ㅣ가-힣]+') #한글과 띄어쓰기만 추출
+    text = re.sub(r"[^\uAC00-\uD7A30-9a-zA-Z\s]", ' ', text) # 특수 문자 제거
+    text = re.sub(r'[^a-zA-Z0-9\sㄱ-ㅎ가-힣]', '', text)   
+    text = pattern_onlyKorean.sub('',text)
+    return text
+
+# 여러 개의 공백을 한 개의 공백으로 줄이는 함수
+def reduce_multiple_spaces(text):
+    return re.sub(r'\s+', ' ', text)
+
+
+#중첩된 리스트를 하나의 리스트로 만드는 함수
+def flatten_list(nested_list):
+    return [item for sublist in nested_list for item in sublist]
+
+# # 가장 빈도가 높은 키워드 추출
+# def get_top_keywords(df, column_name, num_keywords=25):
+#     all_tokens = sum(df[column_name], [])
+#     keyword_counts = Counter(all_tokens)
+#     top_keywords = keyword_counts.most_common(num_keywords)
+#     print("빈도 수가 높은 키워드 : ", top_keywords)
+#     #_ 변수를 무시하고 싶을때 사용하는 표현
+#     return set([keyword for keyword, _ in top_keywords])
+
+# def find_common_keywords(df_first, df_second, num_keywords=25):
+#     top_keywords_first = get_top_keywords(df_first, num_keywords)
+#     top_keywords_second = get_top_keywords(df_second, num_keywords)
+#     common_keywords = list(top_keywords_first & top_keywords_second)
+#     print("공통된 키워드 추출 : ", common_keywords)
+#     return common_keywords
+
+# 가장 빈도가 높은 키워드 추출
+def get_top_keywords(df, column_name, num_keywords=25):
+    all_tokens = sum(df[column_name].dropna().tolist(), [])
+    keyword_counts = Counter(all_tokens)
+    top_keywords = keyword_counts.most_common(num_keywords)
+    print("빈도 수가 높은 키워드 : ", top_keywords)
+    #_ 변수를 무시하고 싶을때 사용하는 표현
+    return set([keyword for keyword, _ in top_keywords])
+
+def find_common_keywords(df_first, df_second, column_name, num_keywords=25):
+    top_keywords_first = get_top_keywords(df_first, column_name, num_keywords)
+    top_keywords_second = get_top_keywords(df_second, column_name, num_keywords)
+    common_keywords = list(top_keywords_first & top_keywords_second)
+    print("공통된 키워드 추출 : ", common_keywords)
+    return common_keywords
+
+#제외할 키워드
+def remove_keywords(tokens, keywords):
+    return [token for token in tokens if token not in keywords]
+
+def filter_long_words(word_list):
+    return [word for word in word_list if len(word) > 1]
