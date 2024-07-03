@@ -11,7 +11,7 @@ import utils
 """
 
 # 데이터 로드
-data = pd.read_csv('./data/korean_coverstaion_datasets.csv')
+data = pd.read_csv('./data/comment/korean_coverstaion_datasets.csv')
 
 # "놀람"을 제외한 데이터 필터링
 data = data[data['Emotion'] != '놀람']

@@ -27,18 +27,18 @@ def preprocess_new_data(texts, tokenizer, max_length=128):
     return encodings
 
 # 학습된 모델과 토크나이저 로드
-model_path = './data/fine_tuned_kcbert'
+model_path = './youthPolicyAnalysis/data/fine_tuned_kcbert'
 model = BertForSequenceClassification.from_pretrained(model_path)
 tokenizer = BertTokenizer.from_pretrained(model_path) 
 
 #수집할 년도
-year = 2020
+year = 2324
 
 # 모델 평가 모드로 전환
 model.eval()
 
 # 댓글 데이터 로드 및 전처리
-new_data = pd.read_csv(f'./data/comment/comments_policy_{year}.csv')
+new_data = pd.read_csv(f'./youthPolicyAnalysis/data/comment/comments_policy_{year}.csv')
 
 # 전처리 함수 재사용
 new_data['contents'] = new_data['contents'].apply(utils.preprocess_text)
@@ -86,5 +86,5 @@ predicted_emotions = [label_map_reverse[prediction] for prediction in prediction
 new_data['predicted_emotion'] = predicted_emotions
 
 # 결과 저장
-new_data[["date","contents", "predicted_emotion","url"]].to_csv(f'./data/comment/predicted_comments_{year}.csv', index=False)
+new_data[["date","contents", "predicted_emotion","url"]].to_csv(f'./youthPolicyAnalysis/data/comment/predicted_comments_{year}.csv', index=False)
 print("댓글 데이터 Shape : ", new_data.shape)
