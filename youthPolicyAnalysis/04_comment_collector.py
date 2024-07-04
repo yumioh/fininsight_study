@@ -12,7 +12,7 @@ import pandas as pd
 
 # 파일 위치 및 기타 설정
 directory = './youthPolicyAnalysis/data/news/'
-year = "2324"
+year = "2020"
 subject = "policy"
 merged_file = f'{directory}news_url_{year}_{subject}.csv'
 
@@ -21,7 +21,7 @@ news_df = pd.read_csv(merged_file)
 print("news data : ", news_df.shape)
 
 # 필요한 정보만 포함한 DataFrame 생성
-comment_df = news_df[['inp_date', 'origin_url']][:100]
+comment_df = news_df[['inp_date', 'origin_url']]
 
 # 댓글 및 날짜 정보 저장을 위한 리스트
 comments_data = []

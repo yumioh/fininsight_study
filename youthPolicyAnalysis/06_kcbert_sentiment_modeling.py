@@ -11,7 +11,7 @@ import utils
 """
 
 # 데이터 로드
-data = pd.read_csv('./data/comment/korean_coverstaion_datasets.csv')
+data = pd.read_csv('./youthPolicyAnalysis/data/comment/korean_coverstaion_datasets.csv')
 
 # "놀람"을 제외한 데이터 필터링
 data = data[data['Emotion'] != '놀람']
@@ -62,13 +62,13 @@ val_dataset = CustomDataset(val_encodings)
 model = BertForSequenceClassification.from_pretrained("beomi/kcbert-base", num_labels=len(label_map))
 
 training_args = TrainingArguments(
-    output_dir='./data/results',
+    output_dir='./youthPolicyAnalysis/data/results',
     num_train_epochs=3,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
     warmup_steps=300,
     weight_decay=0.01,
-    logging_dir='./data/logs',
+    logging_dir='./youthPolicyAnalysis/data/logs',
     logging_steps=50,
     eval_strategy="epoch"
 )
@@ -88,5 +88,5 @@ eval_result = trainer.evaluate()
 print("Evaluation result:", eval_result)
 
 # 학습된 모델 저장
-model.save_pretrained('./data/fine_tuned_kcbert')
-tokenizer.save_pretrained('./data/fine_tuned_kcbert')
+model.save_pretrained('./youthPolicyAnalysis/data/fine_tuned_kcbert')
+tokenizer.save_pretrained('./youthPolicyAnalysis/data/fine_tuned_kcbert')
